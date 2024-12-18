@@ -17,7 +17,7 @@ const DarkMode: React.FC = () => {
 
   return (
     <button
-      className="p-3 rounded-full bg-sun-secondary dark:bg-dark-secondary text-sun-accent dark:text-dark-accent shadow-lg transition duration-300 hover:scale-110"
+      className="w-12 h-12 flex items-center justify-center rounded-full bg-sun-secondary dark:bg-[#f8b27d] text-sun-accent dark:text-dark-accent shadow-lg transition duration-200 hover:scale-110"
       onClick={toggleTheme}
     >
       {isDarkMode ? (
