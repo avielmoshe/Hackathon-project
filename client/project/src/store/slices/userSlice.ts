@@ -1,6 +1,6 @@
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface User {
+export interface User {
   firstName?: string;
   lastName?: string;
   userName?: string;
@@ -9,19 +9,22 @@ interface User {
   role: "provider" | "customer" | "guest";
   profileImg?: string;
 }
-const initialUser: User = {
-  role: "guest",
+
+const initialState = {
+  user: {
+    role: "guest",
+  } as User,
 };
 
 const userSlice = createSlice({
   name: "user",
-  initialState: initialUser,
+  initialState,
   reducers: {
-    setUser: (state, action) => {
-      state.user = action.payload;
+    setUser: (state, action: PayloadAction<User>) => {
+      state.user = action.payload; // Update the user object
     },
-    removeUser: (state, action) => {
-      state = { role: "guest" };
+    removeUser: (state) => {
+      state.user = { role: "guest" }; // Reset to guest role
     },
   },
 });

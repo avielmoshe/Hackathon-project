@@ -1,14 +1,16 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signIn } from "../utils/api.service";
-import { useDispatch, useSelector } from "react-redux";
+import { setUser } from "../store/slices/userSlice";
+import { useAppDispatch } from "../store";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [btnText, setBtnText] = useState("Log In");
   const [errorMessage, setErrorMessage] = useState("");
-  const passRef = useRef<HTMLInputElement>(null); 
+  const passRef = useRef<HTMLInputElement>(null);
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -17,16 +19,15 @@ const Login = () => {
       username: userName,
       password,
     };
+
     const data = await signIn(userData);
     if (data.success === false) {
-      console.log(data);
       setBtnText("Log In");
       setErrorMessage(data.error.error);
-     }else{
-       navigate("/")
-       console.log(data);
-      }
-     
+    } else {
+      dispatch(setUser(data.user));
+      navigate("/");
+    }
   };
 
   return (
