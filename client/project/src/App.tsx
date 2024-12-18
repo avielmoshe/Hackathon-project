@@ -16,7 +16,7 @@ function App() {
       children: [
         {
           path: "/",
-          element: <HomxePage />,
+          element: <HomePage />,
         },
         {
           path: "/About",
