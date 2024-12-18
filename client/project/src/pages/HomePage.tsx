@@ -6,7 +6,7 @@ function HomePage() {
 
   return (
     <div>
-      <div>{JSON.stringify(user.userName)}</div>
+      <div>{JSON.stringify(user.username)}</div>
       <div>{user.role}</div>
     </div>
   );
