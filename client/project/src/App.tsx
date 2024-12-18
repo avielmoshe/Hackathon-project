@@ -1,7 +1,7 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Layout from "./pages/Layout.tsx";
-import About from "./pages/about.tsx";
+import About from "./pages/About.tsx";
 
 import Login from "./pages/Login.tsx";
 import SignUp from "./pages/SignUp.tsx";
