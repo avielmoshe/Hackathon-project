@@ -105,3 +105,11 @@ export const getProviderByUserId = async (userId: string) => {
     };
   }
 };
+
+export const deleteCookie = async () => {
+  try {
+    Cookies.remove("jwt");
+  } catch (error) {
+    console.log(error);
+  }
+};
