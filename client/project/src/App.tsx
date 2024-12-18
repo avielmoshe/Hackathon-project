@@ -1,12 +1,12 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import Layout from "./pages/Layout.jsx";
+// import Layout from "./pages/Layout.jsx";
 import Login from "./pages/Login.jsx";
-import SignUp from "./pages/SignUp.jsx";
+// import SignUp from "./pages/SignUp.jsx";
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      element: <Layout isLogIn={isLogIn} setIsLogIn={setIsLogIn} />,
+      // element: <Layout isLogIn={isLogIn} setIsLogIn={setIsLogIn} />,
       // children: [
       //   {
       //     path: "/",
