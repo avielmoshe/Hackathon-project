@@ -2,8 +2,14 @@ import React from 'react';
 import { FaSearch } from 'react-icons/fa';
 import DarkMode from './DarkMode'; // Importando seu componente DarkMode
 import { Link } from 'react-router-dom'; // Corrigido o import do Link
+import { useSelector } from "react-redux";
+
+
 
 const Header: React.FC = () => {
+
+  const user = useSelector((state) => state.user)
+  console.log(user)
   return (
     <header className="w-full bg-sun-background dark:bg-dark-background text-sun-primary dark:text-dark-primary shadow-md">
       <div className="container mx-auto flex items-center justify-between p-4">
@@ -11,44 +17,19 @@ const Header: React.FC = () => {
         <nav>
           <ul className="flex space-x-6">
             <li>
-              <Link
-                to="/"
-                className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300"
-              >
-                Home Page
-              </Link>
+              <Link to="/" className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300">Home Page</Link>
             </li>
             <li>
-              <Link
-                to="/login"
-                className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300"
-              >
-                Login
-              </Link>
+              <Link to="/Profile/:id" className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300">Profile</Link>
             </li>
             <li>
-              <Link
-                to="/signup"
-                className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300"
-              >
-                Signup
-              </Link>
+              <Link to="/About" className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300">About</Link>
             </li>
             <li>
-              <Link
-                to="/profile"
-                className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300"
-              >
-                Profile
-              </Link>
+              <Link to="/login" className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300">LogIn</Link>
             </li>
             <li>
-              <Link
-                to="/about"
-                className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300"
-              >
-                About
-              </Link>
+              <Link to="/signUp" className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300">SignUp</Link>
             </li>
           </ul>
         </nav>
