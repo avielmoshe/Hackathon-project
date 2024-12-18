@@ -88,8 +88,10 @@ export const singInUser = async (req, res) => {
     if (!isAuth) {
       return res.status(401).send({ error: "Invalid password." });
     }
+    const { id } = foundUser;
+    const user = await User.findById(id);
 
-    const token = JWT.sign({ foundUser }, process.env.JWT_KEY, JWT_EXPIRATION);
+    const token = JWT.sign({ user }, process.env.JWT_KEY, JWT_EXPIRATION);
     console.log(token);
 
     res.cookie("jwt", token, {
@@ -103,6 +105,7 @@ export const singInUser = async (req, res) => {
       message: "Authentication successful",
       isAuth: true,
       token: token,
+      user,
     });
   } catch (error) {
     console.error("Sign-in error:", error);
