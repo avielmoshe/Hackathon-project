@@ -19,7 +19,7 @@ function Profile() {
       if (providerData.dontHaveData) {
         navigate("/EditProfile");
       } else {
-        setIsLoaded(true);a
+        setIsLoaded(true);
       }
     })();
   }, [params.id, navigate]);
