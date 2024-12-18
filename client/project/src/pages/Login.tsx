@@ -51,7 +51,7 @@ const Login = () => {
   return (
     <>
       <div className="container">
-        <div className="left">
+        <div className="bg-black">
           <div className="backgroundImage"></div>
         </div>
         <div className="right">
