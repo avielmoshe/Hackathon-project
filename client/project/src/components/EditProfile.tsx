@@ -67,7 +67,6 @@ function EditProfile() {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
         <div className="text-center mb-6">
-          <div className="hlLogo mx-auto bg-gray-300 rounded-full h-16 w-16"></div>
           <h1 className="text-black-600 mt-4">
             Update your profile to help improve our community.
           </h1>

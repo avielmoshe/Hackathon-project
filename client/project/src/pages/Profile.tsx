@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import defaultBanner from "../assets/images/banner-background.jpg";
+import defaultProfile from "../assets/images/banner-background.jpg";
 
 function Profile() {
   const [profileData, setProfileData] = useState("");
@@ -44,7 +45,14 @@ function Profile() {
       <div className="md:flex flex-col items-start">
         <div className="md:flex w-screen relative">
           <div>
-            <div className="rounded-full bg-black w-36 h-36 ml-32"></div>
+            <div
+              className="rounded-full w-36 h-36 ml-32 bg-cover bg-center"
+              style={{
+                backgroundImage: `url(${
+                  profileData.profileImg || defaultProfile
+                })`,
+              }}
+            ></div>
             <p className="ml-40 mt-4">rating: 0</p>
           </div>
           <div className="md:flex flex-col ml-12">
@@ -70,15 +78,17 @@ function Profile() {
             )}
             <p>
               bio:
-              <div className="bg-gray-50 text-black h-80 w-96 rounded-xl ml-10 mb-10">
+              <div className="bg-gray-50 text-black h-80 w-96 rounded-xl ml-10 mb-10 overflow-y-auto">
                 {profileData.bio && <p className="p-2"> {profileData.bio}</p>}
               </div>
             </p>
           </div>
           <button
-            className="bg-gray-200 p-3 rounded-full absolute top-4 right-10 cursor-pointer hover:bg-gray-300 text-gray-600 shadow-md"
+            className="bg-gray-200 p-3 rounded-full absolute p-3 top-4 right-10 cursor-pointer hover:bg-gray-300 text-gray-600 shadow-md"
             onClick={() => navigate("/EditProfile")}
-          ></button>
+          >
+            Edit Profile
+          </button>
         </div>
       </div>
     </div>
