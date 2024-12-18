@@ -9,7 +9,7 @@ function Layout() {
       <Header />
 
       {/* Main Content */}
-      <main className="flex-grow bg-background text-foreground">
+      <main className="flex-grow bg-background text-foreground pt-[6rem]">
         <Outlet />
       </main>
 

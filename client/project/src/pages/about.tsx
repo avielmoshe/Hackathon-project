@@ -38,15 +38,15 @@ const teamMembers = [
 const About = () => {
   return (
     <>
-      <div className="flex flex-col  mt-24 items-center py-8 bg-background text-foreground transition-all duration-300">
+      <div className="flex flex-col   items-center py-8 bg-background text-foreground transition-all duration-300">
         {/* Title */}
-        <div className="text-center mb-16">
+        <div className="text-center mb-8">
           <h1 className="text-5xl font-extrabold mb-4">Our Team</h1>
           <div className="h-1 w-24 bg-primary mx-auto"></div>
         </div>
 
         {/* Team Members Section */}
-        <div className="flex flex-wrap justify-center gap-12 mb-16">
+        <div className="flex flex-wrap justify-center gap-12 mb-4">
           {teamMembers.map((member, index) => (
             <div
               key={index}
