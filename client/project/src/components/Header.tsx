@@ -1,35 +1,40 @@
 import React from 'react';
 import { FaSearch } from 'react-icons/fa';
-import DarkMode from './DarkMode'; // Importando seu componente DarkMode
-import { Link } from 'react-router-dom'; // Corrigido o import do Link
-import { useSelector } from "react-redux";
-
-
+import DarkMode from './DarkMode';
+import { Link } from 'react-router-dom';
 
 const Header: React.FC = () => {
-
-  const user = useSelector((state) => state.user)
-  console.log(user)
   return (
     <header className="w-full bg-sun-background dark:bg-dark-background text-sun-primary dark:text-dark-primary shadow-md">
       <div className="container mx-auto flex items-center justify-between p-4">
-        {/* Navbar */}
+
+        {/* NavBar */}
         <nav>
           <ul className="flex space-x-6">
             <li>
-              <Link to="/" className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300">Home Page</Link>
+              <Link to="/" className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300">
+                Home Page
+              </Link>
             </li>
             <li>
-              <Link to="/Profile/:id" className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300">Profile</Link>
+              <Link to="/Profile/:id" className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300">
+                Profile
+              </Link>
             </li>
             <li>
-              <Link to="/About" className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300">About</Link>
+              <Link to="/About" className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300">
+                About
+              </Link>
             </li>
             <li>
-              <Link to="/login" className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300">LogIn</Link>
+              <Link to="/login" className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300">
+                LogIn
+              </Link>
             </li>
             <li>
-              <Link to="/signUp" className="hover:text-sun-accent dark:hover:text-dark-accent transition duration-300">SignUp</Link>
+              <Link to="/signUp" className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300">
+                SignUp
+              </Link>
             </li>
           </ul>
         </nav>
@@ -40,23 +45,25 @@ const Header: React.FC = () => {
           <input
             type="text"
             placeholder="Search..."
-            className="w-full p-2 pl-10 rounded-full bg-sun-secondary dark:bg-dark-secondary text-sun-text dark:text-dark-accent focus:outline-none"
+            className="w-full p-2 pl-10 rounded-full bg-sun-secondary dark:bg-[#f8b27d] text-sun-text dark:text-dark-accent placeholder-gray-500 dark:placeholder-gray-500 focus:outline-none"
           />
         </div>
 
-        {/* Dark Mode */}
-        <div>
-          <DarkMode />
-        </div>
 
-        {/* Profile Image */}
-        <div>
+        {/* Profile Image e Dark Mode */}
+        <div className="flex items-center space-x-4">
+          {/* Profile Image */}
           <img
             src="https://cdn-icons-png.flaticon.com/512/3607/3607444.png"
             alt="Profile"
-            className="w-10 h-10 rounded-full object-cover"
+            className="w-12 h-12 rounded-full object-cover hover:scale-110 transition duration-200"
           />
+          {/* Dark Mode */}
+
+          <DarkMode />
+
         </div>
+
       </div>
     </header>
   );
