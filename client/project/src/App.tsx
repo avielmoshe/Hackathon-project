@@ -1,30 +1,36 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-// import Layout from "./pages/Layout.jsx";
+
+import Layout from "./pages/Layout.jsx";
+import About from "./pages/about.jsx"
 import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
+import HomePage from "./pages/HomePage.jsx";
+import Profile from "./pages/Profile.jsx";
+
 function App() {
   const router = createBrowserRouter([
     {
       path: "/",
-      // element: <Layout isLogIn={isLogIn} setIsLogIn={setIsLogIn} />,
-      // children: [
-      //   {
-      //     path: "/",
-      //     element: <HomePage isLogIn={isLogIn} setIsLogIn={setIsLogIn} />,
-      //   },
-      //   {
-      //     path: "/createPost",
-      //     element: <CreatePost />,
-      //   },
-      //   {
-      //     path: "/userProfile/:id",
-      //     element: <UserProfile />,
-      //   },
-      //   {
-      //     path: "/change-password",
-      //     element: <ChangePassword />,
-      //   },
-      // ],
+
+      element: <Layout  />,
+      children: [
+        {
+          path: "/",
+          element: <HomePage />,
+        },
+        {
+          path: "/About",
+          element: <About />,
+        },
+        {
+          path: "/userProfile/:id",
+          element: <Profile />,
+        },
+        {
+          path: "/change-password",
+          element: <ChangePassword />,
+        },
+      ],
     },
     {
       path: "/login",
