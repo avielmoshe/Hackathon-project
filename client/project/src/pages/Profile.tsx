@@ -14,6 +14,8 @@ function Profile() {
   useEffect(() => {
     (async () => {
       const providerData = await getProviderByUserId(params.id);
+      console.log(providerData);
+
       if (providerData.dontHaveData) {
         navigate("/EditProfile");
       } else {
