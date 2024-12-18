@@ -5,6 +5,7 @@ import dotenv from "dotenv";
 import cors from "cors";
 import usersRoutes from "./routes/userRoute.js";
 import providersRoutes from "./routes/providerRoute.js";
+import PostsRoutes from "./routes/postsRoute.js";
 
 const app = express();
 const PORT = 3000;
@@ -29,6 +30,7 @@ app.get("/api/status", (req, res) => {
 
 app.use("/api/user", usersRoutes);
 app.use("/api/provider", providersRoutes);
+app.use("/api/post", PostsRoutes);
 
 app.listen(PORT, () => {
   console.log(`server is running on port ${PORT}`);
