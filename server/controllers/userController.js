@@ -3,15 +3,15 @@ import { hashPassword, comparePassword } from "../utils/auth.js";
 import JWT from "jsonwebtoken";
 const JWT_EXPIRATION = { expiresIn: "1h" };
 
-export const TokenValid = (req, res) => {
+export const TokenValid = async (req, res) => {
   try {
     res.status(200).send({
-      id: req.user._id,
-      username: req.user.username,
-      profile: req.user.profile,
-      bio: req.user.bio,
-      nickname: req.user.nickname,
+      id: req.user.id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
       email: req.user.email,
+      phone: req.user.phone,
+      role: req.user.role,
     });
   } catch (error) {
     res
@@ -91,7 +91,19 @@ export const singInUser = async (req, res) => {
     const { id } = foundUser;
     const user = await User.findById(id);
 
-    const token = JWT.sign({ user }, process.env.JWT_KEY, JWT_EXPIRATION);
+    const token = JWT.sign(
+      {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        userName: user.userName,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+      },
+      process.env.JWT_KEY,
+      JWT_EXPIRATION
+    );
     console.log(token);
 
     res.cookie("jwt", token, {
@@ -146,7 +158,13 @@ export const updateUser = async (req, res) => {
     try {
       const token = JWT.sign(
         {
-          user,
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          userName: user.userName,
+          email: user.email,
+          phone: user.phone,
+          role: user.role,
         },
         process.env.JWT_KEY,
         JWT_EXPIRATION
