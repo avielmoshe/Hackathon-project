@@ -7,7 +7,7 @@ import { RootState } from "@/store";
 
 const Header: React.FC = () => {
   const user = useSelector((state: RootState) => state.user.user);
-  console.log(user);
+  console.log(user.id);
 
   return (
     <header className="w-full bg-sun-background dark:bg-dark-background text-sun-primary dark:text-dark-primary shadow-md">
@@ -33,7 +33,7 @@ const Header: React.FC = () => {
                 </Link>
               </li>
             )}
-            {user.role !== "guest" && (
+            {user.role === "guest" && (
               <li>
                 <Link
                   to="/About"
@@ -43,7 +43,7 @@ const Header: React.FC = () => {
                 </Link>
               </li>
             )}
-            {user.role === "guest" && (
+            {user.role !== "guest" && (
               <>
                 <li>
                   <Link
