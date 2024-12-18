@@ -5,12 +5,14 @@ const JWT_EXPIRATION = { expiresIn: "1h" };
 
 export const TokenValid = async (req, res) => {
   try {
-    const user = await User.findById(req.user.user._id);
-
-    console.log(req.user);
-    console.log(user);
-
-    res.status(200).send(user);
+    res.status(200).send({
+      id: req.user.id,
+      firstName: req.user.firstName,
+      lastName: req.user.lastName,
+      email: req.user.email,
+      phone: req.user.phone,
+      role: req.user.role,
+    });
   } catch (error) {
     res
       .status(500)
@@ -89,7 +91,19 @@ export const singInUser = async (req, res) => {
     const { id } = foundUser;
     const user = await User.findById(id);
 
-    const token = JWT.sign({ user }, process.env.JWT_KEY, JWT_EXPIRATION);
+    const token = JWT.sign(
+      {
+        id: user._id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        userName: user.userName,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+      },
+      process.env.JWT_KEY,
+      JWT_EXPIRATION
+    );
     console.log(token);
 
     res.cookie("jwt", token, {
@@ -144,7 +158,13 @@ export const updateUser = async (req, res) => {
     try {
       const token = JWT.sign(
         {
-          user,
+          id: user._id,
+          firstName: user.firstName,
+          lastName: user.lastName,
+          userName: user.userName,
+          email: user.email,
+          phone: user.phone,
+          role: user.role,
         },
         process.env.JWT_KEY,
         JWT_EXPIRATION
