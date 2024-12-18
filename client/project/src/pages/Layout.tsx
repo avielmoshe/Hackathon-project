@@ -4,11 +4,13 @@ import Footer from "@/components/Footer";
 import EditProfile from "@/components/EditProfile";
 function Layout() {
   return (
-    <div>
-      <Header />
+    <div className="flex flex-col min-h-screen">
+    <Header />
+    <main className="flex-grow bg-background text-foreground">
       <Outlet />
-      <Footer />
-    </div>
+    </main>
+    <Footer />
+  </div>
   );
 }
 
