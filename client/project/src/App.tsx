@@ -9,6 +9,7 @@ import HomePage from "./pages/HomePage.jsx";
 import Profile from "./pages/Profile.jsx";
 import Error from "./pages/Error.jsx";
 
+
 function App() {
   const router = createBrowserRouter([
     {
