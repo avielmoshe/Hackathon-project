@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import defaultBanner from "../assets/images/banner-background.jpg";
+import DefaultProfile from "../assets/images/banner-background.jpg";
 
 function Profile() {
   const [profileData, setProfileData] = useState("");
@@ -46,7 +47,14 @@ function Profile() {
           <div className="flex flex-col md:flex-row w-full max-w-4xl">
             {/* Avatar e Rating */}
             <div className="flex flex-col items-center md:items-start md:w-1/3">
-              <div className="rounded-full bg-black w-36 h-36"></div>
+              <div
+                className="rounded-full  w-36 h-36 bg-cover bg-center"
+                style={{
+                  backgroundImage: `url(${
+                    profileData.profileImg || DefaultProfile
+                  })`,
+                }}
+              ></div>
               <p className="mt-4 text-center md:text-left">Rating: 0</p>
             </div>
             {/* Informações do Perfil */}
