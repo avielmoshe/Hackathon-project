@@ -3,7 +3,7 @@ import { FaProjectDiagram, FaUniversity, FaBuilding, FaUserShield } from "react-
 
 const Footer: React.FC = () => {
   return (
-    <footer className="bg-sun-primary dark:bg-gray-800 text-gray-800 dark:text-gray-100 py-6 mt-auto">
+    <footer className="bg-gray-300 dark:bg-gray-800 text-gray-800 dark:text-gray-100 py-6 mt-auto">
       <div className="container mx-auto flex flex-col items-center">
         {/* Footer Items */}
         <div className="flex flex-wrap justify-center gap-8">

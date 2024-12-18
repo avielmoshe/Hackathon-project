@@ -38,7 +38,7 @@ const teamMembers = [
 const About = () => {
   return (
     <>
-      <div className="flex flex-col items-center py-8 bg-background text-foreground transition-all duration-300">
+      <div className="flex flex-col  mt-24 items-center py-8 bg-background text-foreground transition-all duration-300">
         {/* Title */}
         <div className="text-center mb-16">
           <h1 className="text-5xl font-extrabold mb-4">Our Team</h1>

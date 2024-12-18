@@ -22,7 +22,7 @@ const Header: React.FC = () => {
   return (
     <>
       {/* Header */}
-      <header className="w-full bg-background text-foreground shadow-md transition-all duration-300">
+      <header className="fixed top-0 z-50  w-full  dark:bg-gray-900  bg-gray-400 text-foreground shadow-md transition-all duration-300">
         <div className="container mx-auto flex items-center justify-between p-4">
           {/* Menu Hamburguer para Mobile */}
           <button
