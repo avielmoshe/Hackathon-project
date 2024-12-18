@@ -23,11 +23,11 @@ function App() {
           element: <About />,
         },
         {
-          path: "/userProfile/:id",
+          path: "/Profile/:id",
           element: <Profile />,
         },
         {
-          path: "/error",
+          path: "*",
           element: <Error />,
         },
       ],
