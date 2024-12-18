@@ -23,8 +23,6 @@ function App() {
       if (dataAuth.userLogout) {
         dispatch(setUser({ role: "guest" }));
       } else {
-        console.log(dataAuth);
-
         dispatch(setUser(dataAuth));
       }
     })();

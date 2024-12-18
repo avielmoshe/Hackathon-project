@@ -2,11 +2,12 @@ import React from "react";
 import { FaSearch } from "react-icons/fa";
 import DarkMode from "./DarkMode";
 import { Link } from "react-router-dom";
-// import { useSelector } from "react-redux";
+import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 const Header: React.FC = () => {
-  // const user = useSelector((state) => state.user.user);
-  // console.log(user);
+  const user = useSelector((state: RootState) => state.user.user);
+  console.log(user);
 
   return (
     <header className="w-full bg-sun-background dark:bg-dark-background text-sun-primary dark:text-dark-primary shadow-md">
@@ -22,38 +23,46 @@ const Header: React.FC = () => {
                 Home Page
               </Link>
             </li>
-            <li>
-              <Link
-                to="/Profile/:id"
-                className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300"
-              >
-                Profile
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/About"
-                className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300"
-              >
-                About
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/login"
-                className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300"
-              >
-                LogIn
-              </Link>
-            </li>
-            <li>
-              <Link
-                to="/signUp"
-                className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300"
-              >
-                SignUp
-              </Link>
-            </li>
+            {user.role === "provider" && (
+              <li>
+                <Link
+                  to={`Profile/${user.id}`}
+                  className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300"
+                >
+                  Profile
+                </Link>
+              </li>
+            )}
+            {user.role !== "guest" && (
+              <li>
+                <Link
+                  to="/About"
+                  className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300"
+                >
+                  About
+                </Link>
+              </li>
+            )}
+            {user.role === "guest" && (
+              <>
+                <li>
+                  <Link
+                    to="/login"
+                    className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300"
+                  >
+                    LogIn
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    to="/signUp"
+                    className="inline-block text-sun-primary dark:text-gray-400 hover:text-sun-accent dark:hover:text-dark-accent hover:scale-110 transition-all duration-300"
+                  >
+                    SignUp
+                  </Link>
+                </li>
+              </>
+            )}
           </ul>
         </nav>
 
@@ -70,13 +79,20 @@ const Header: React.FC = () => {
         {/* Profile Image e Dark Mode */}
         <div className="flex items-center space-x-4">
           {/* Profile Image */}
-          <img
-            src="https://cdn-icons-png.flaticon.com/512/3607/3607444.png"
-            alt="Profile"
-            className="w-12 h-12 rounded-full object-cover hover:scale-110 transition duration-200"
-          />
+          {user.profileImg ? (
+            <img
+              src={user.profileImg}
+              alt={user.firstName || "User"}
+              className="w-12 h-12 rounded-full object-cover hover:scale-110 transition duration-200"
+            />
+          ) : (
+            <img
+              src="https://cdn-icons-png.flaticon.com/512/3607/3607444.png"
+              alt="Default Profile"
+              className="w-12 h-12 rounded-full object-cover hover:scale-110 transition duration-200"
+            />
+          )}
           {/* Dark Mode */}
-
           <DarkMode />
         </div>
       </div>

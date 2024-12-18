@@ -16,7 +16,7 @@ const teamMembers = [
     photo: "https://media.licdn.com/dms/image/v2/D5603AQGHDYebMU11Gg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728936119785?e=1740009600&v=beta&t=QYTQU_X1Z_Js3mjTSuw1LK4OJAKPtDHEbH_V7qMopW4",
     linkedin: "https://www.linkedin.com/in/eden-shabi-2b003a320/",
     instagram: "https://www.instagram.com/",
-    github: "https://github.com/liavbenshimon",
+    github: "https://github.com/eden182",
     email: "https://accounts.google.com/v3/signin/identifier",
   },
   {
