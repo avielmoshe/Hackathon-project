@@ -1,7 +1,5 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
-import { useCheckIfUserValid } from "../hooks/useCheckIfUserValid";
-import { useEffect } from "react";
 
 function HomePage() {
   const user = useSelector((state: RootState) => state.user.user);
