@@ -2,11 +2,7 @@ import express from "express";
 import {
   crateNewPost,
   getAllPosts,
-  // getPosts,
-  // getPostById,
-  // deletePostById,
-  // getMyPosts,
-  // likePost,
+  getFilteredPosts,
 } from "../controllers/postController.js";
 import { verifyToken } from "../middleware/auth.js";
 
@@ -16,7 +12,7 @@ router.post("/cratePost", verifyToken, crateNewPost);
 
 router.get("/", getAllPosts);
 
-// router.get("/myPosts", verifyToken, getMyPosts);
+router.get("/getFilteredPosts", getFilteredPosts);
 
 // router.get("/byId/:id", getPostById);
 
