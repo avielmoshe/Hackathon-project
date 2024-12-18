@@ -38,7 +38,7 @@ export const getProviderByUserId = async (req, res) => {
     if (!userId) {
       return res.status(400).send({ error: "userId is required" });
     }
-    const providerData = await Provider.find({ userID: userId }).populate({
+    const providerData = await Provider.findOne({ userID: userId }).populate({
       path: "userID",
       select: "profileImg username phone email",
     });
