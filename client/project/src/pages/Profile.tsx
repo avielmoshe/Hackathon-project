@@ -20,7 +20,7 @@ function Profile() {
                 " " +
                 user.lastName?.toUpperCase()}
             </h1>
-            <p> {user.username}</p>
+            <p> {user.userName}</p>
             <p> {user.email}</p>
             <p> {user.phone}</p>
           </div>
