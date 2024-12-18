@@ -6,8 +6,14 @@
 // export default Post;
 
 const Post = ({ post }) => {
+  console.log(post)
   return (
     <div className="bg-white dark:bg-gray-800 shadow-md rounded-lg p-4 mb-4">
+      <div className="rounded-full w-20 h-20 bg-cover bg-center" style={{
+        backgroundImage: `url(${post.im})`
+      }}>
+
+      </div>
       {/* Title */}
       <h2 className="font-bold text-xl text-gray-800 dark:text-gray-100 mb-2">
         {post.title}

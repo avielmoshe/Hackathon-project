@@ -14,7 +14,7 @@ const PostsContainer: React.FC = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6 overflow-y-auto">
       {posts.map((post) => (
         <Post key={post._id} post={post} />
       ))}
