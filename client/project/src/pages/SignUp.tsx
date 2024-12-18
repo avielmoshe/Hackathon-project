@@ -32,7 +32,6 @@ const SignUp = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-
   const handleSubmit = async (e: any) => {
     e.preventDefault();
 
@@ -48,25 +47,22 @@ const SignUp = () => {
       return;
     }
     console.log(formData);
-    
-    const data =  await signUp(formData)
+
+    const data = await signUp(formData);
     console.log(data);
-    if (data.status==="success") {
+    if (data.status === "success") {
       setMessage({
         type: "success",
         text: data.message,
-      });    
-      navigate("/login")
-    }
-    else{
+      });
+      navigate("/login");
+    } else {
       setMessage({
         type: "error",
         text: data.error.message,
-      });    
+      });
     }
-
   };
-
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -206,7 +202,9 @@ const SignUp = () => {
             Have an account?{" "}
             <span
               className="text-indigo-500 hover:underline cursor-pointer"
-              onClick={()=>{navigate("/login")}}
+              onClick={() => {
+                navigate("/login");
+              }}
             >
               Log in
             </span>
