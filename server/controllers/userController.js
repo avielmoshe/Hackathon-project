@@ -3,16 +3,14 @@ import { hashPassword, comparePassword } from "../utils/auth.js";
 import JWT from "jsonwebtoken";
 const JWT_EXPIRATION = { expiresIn: "1h" };
 
-export const TokenValid = (req, res) => {
+export const TokenValid = async (req, res) => {
   try {
-    res.status(200).send({
-      id: req.user._id,
-      username: req.user.username,
-      profile: req.user.profile,
-      bio: req.user.bio,
-      nickname: req.user.nickname,
-      email: req.user.email,
-    });
+    const user = await User.findById(req.user.user._id);
+
+    console.log(req.user);
+    console.log(user);
+
+    res.status(200).send(user);
   } catch (error) {
     res
       .status(500)
@@ -88,8 +86,10 @@ export const singInUser = async (req, res) => {
     if (!isAuth) {
       return res.status(401).send({ error: "Invalid password." });
     }
+    const { id } = foundUser;
+    const user = await User.findById(id);
 
-    const token = JWT.sign({ foundUser }, process.env.JWT_KEY, JWT_EXPIRATION);
+    const token = JWT.sign({ user }, process.env.JWT_KEY, JWT_EXPIRATION);
     console.log(token);
 
     res.cookie("jwt", token, {
@@ -103,6 +103,7 @@ export const singInUser = async (req, res) => {
       message: "Authentication successful",
       isAuth: true,
       token: token,
+      user,
     });
   } catch (error) {
     console.error("Sign-in error:", error);
