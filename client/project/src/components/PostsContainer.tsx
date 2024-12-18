@@ -23,3 +23,4 @@ const PostsContainer: React.FC = () => {
 };
 
 export default PostsContainer;
+
