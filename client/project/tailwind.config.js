@@ -64,6 +64,9 @@ export default {
         sm: "calc(var(--radius) - 4px)",
       },
     },
+    backgroundImage: {
+      banner: "url('/src/assets/images/banner-background.jpg')",
+    },
   },
   plugins: [require("tailwindcss-animate")],
 };
