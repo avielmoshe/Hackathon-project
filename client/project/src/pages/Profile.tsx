@@ -41,7 +41,7 @@ function Profile() {
           backgroundImage: `url(${profileData.bannerImg || defaultBanner})`,
         }}
       ></div>
-      <div className="md:flex flex-col items-start w-screen h-screen">
+      <div className="md:flex flex-col items-start">
         <div className="md:flex w-screen relative">
           <div>
             <div className="rounded-full bg-black w-36 h-36 ml-32"></div>
@@ -59,12 +59,13 @@ function Profile() {
             {profileData.webLink && (
               <p>
                 Website:{" "}
-                <span
+                <a
                   className="text-blue-700"
-                  onClick={() => navigate(profileData.webLink)}
+                  href={profileData.webLink}
+                  target="_blank"
                 >
                   {profileData.webLink}
-                </span>
+                </a>
               </p>
             )}
             <p>
@@ -75,11 +76,9 @@ function Profile() {
             </p>
           </div>
           <button
-            className="bg-gray-200 absolute top-0 right-10 cursor-pointer"
+            className="bg-gray-200 p-3 rounded-full absolute top-4 right-10 cursor-pointer hover:bg-gray-300 text-gray-600 shadow-md"
             onClick={() => navigate("/EditProfile")}
-          >
-            edit
-          </button>
+          ></button>
         </div>
       </div>
     </div>
