@@ -10,12 +10,22 @@ function Profile() {
           <div className="md:flex flex-col ml-12">
             <h1 className="md:flex flex-col font-bold text-3xl">name?</h1>
             <p> user name</p>
-            <p> bio</p>
+            <p> email</p>
+            <p> phone number</p>
           </div>
         </div>
         <p className="ml-40 mt-4">rating: 0</p>
-        <div className="md:flex flex-col self-center items-center">
-          <button className="rounded-full bg-gray-200 w-20 h-20 mb-20"></button>
+        <div className="md:flex flex-col self-center items-center ">
+          <button className="rounded-full bg-gray-100 w-20 h-20 mt-24 mb-10 md:flex items-center justify-center">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 24 24"
+              fill="gray"
+              className="w-8 h-8"
+            >
+              <path d="M4 4l16 8-16 8v-4l9-3-9-3z" />
+            </svg>
+          </button>
           <h2>Upload your post here</h2>
           <p>
             After you upload the post everyone will be able to see it and make
