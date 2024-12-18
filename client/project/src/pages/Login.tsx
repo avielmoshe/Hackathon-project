@@ -8,28 +8,21 @@ const Login = () => {
   const [btnText, setBtnText] = useState("Log In");
   const [errorMessage, setErrorMessage] = useState("");
   const passRef = useRef<HTMLInputElement>(null); 
-  const dispatch = useDispatch();
-  const user = useSelector((state) => state.user);
-   console.log(user);
-
   const navigate = useNavigate();
-
-  
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const password = passRef.current?.value || ""; 
+    const password = passRef.current?.value || "";
     const userData = {
       username: userName,
       password,
     };
-     const data= await signIn(userData)
-     if (data.success===false) {
-       console.log(data);
+    const data = await signIn(userData);
+    if (data.success === false) {
+      console.log(data);
       setBtnText("Log In");
       setErrorMessage(data.error.error);
      }else{
-      dis
        navigate("/")
        console.log(data);
       }
@@ -96,8 +89,21 @@ const Login = () => {
               Sign up
             </span>
           </p>
+          <div className="flex items-center justify-center my-4">
+            <div className="h-px bg-gray-300 flex-grow"></div>
+            <span className="mx-4 text-gray-500 text-sm">or</span>
+            <div className="h-px bg-gray-300 flex-grow"></div>
+          </div>
+          <p className="text-sm text-gray-600">
+            Log in as{" "}
+            <span
+              className="text-indigo-500 hover:underline cursor-pointer"
+              onClick={() => navigate("/home")}
+            >
+              Guest
+            </span>
+          </p>
         </div>
-        <p className="text-center text-sm text-gray-600 mt-4">Get the app.</p>
       </div>
     </div>
   );
