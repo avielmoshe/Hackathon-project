@@ -45,6 +45,10 @@ function App() {
           element: <Profile />,
         },
         {
+          path: "/EditProfile",
+          element: <EditProfile />,
+        },
+        {
           path: "*",
           element: <Error />,
         },

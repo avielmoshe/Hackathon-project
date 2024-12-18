@@ -1,10 +1,21 @@
 import { RootState } from "@/store";
+import { getProviderByUserId } from "@/utils/api.service";
+import { useEffect } from "react";
 import { useSelector } from "react-redux";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 
 function Profile() {
   const params = useParams();
-  console.log(params.id);
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    (async () => {
+      const providerData = await getProviderByUserId(params.id);
+      if (providerData.dontHaveData) {
+        navigate("/");
+      }
+    })();
+  }, []);
 
   const user = useSelector((state: RootState) => state.user.user);
   console.log(user);

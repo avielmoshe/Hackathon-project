@@ -100,7 +100,7 @@ export const getProviderByUserId = async (userId: string) => {
     return response.data;
   } catch (error) {
     return {
-      userLogout: true,
+      dontHaveData: true,
       error: error.response?.data || error.message,
     };
   }
