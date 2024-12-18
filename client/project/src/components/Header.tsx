@@ -3,11 +3,17 @@ import { FaSearch, FaBars } from "react-icons/fa";
 import DarkMode from "./DarkMode";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { RootState } from "@/store";
+import { RootState, useAppDispatch } from "@/store";
+import { deleteCookie } from "@/utils/api.service";
+import { setUser } from "@/store/slices/userSlice";
 
 const Header: React.FC = () => {
   const user = useSelector((state: RootState) => state.user.user);
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+
+  const dispatch = useAppDispatch();
+
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Controla a Sidebar
+
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
@@ -76,8 +82,12 @@ const Header: React.FC = () => {
               {user.role !== "guest" && (
                 <li>
                   <button
-                    className="hover:text-destructive hover:scale-110 transition-all duration-300"
-                    onClick={() => console.log("User logged out")}
+
+                    className="hover:text-destructive dark:hover:text-red-400 hover:scale-110 transition-all duration-300"
+                    onClick={() => {
+                      deleteCookie();
+                      dispatch(setUser({ role: "guest" }));
+                    }}
                   >
                     LogOut
                   </button>
@@ -130,12 +140,18 @@ const Header: React.FC = () => {
         </button>
         <ul className="flex flex-col space-y-6 p-6">
           <li>
-            <Link to="/" className="hover:text-primary transition-all duration-300">
+            <Link
+              to="/"
+              className="hover:text-primary transition-all duration-300"
+            >
               Home Page
             </Link>
           </li>
           <li>
-            <Link to="/About" className="hover:text-primary transition-all duration-300">
+            <Link
+              to="/About"
+              className="hover:text-primary transition-all duration-300"
+            >
               About
             </Link>
           </li>
@@ -144,12 +160,18 @@ const Header: React.FC = () => {
           {user.role === "guest" && (
             <>
               <li>
-                <Link to="/login" className="hover:text-primary transition-all duration-300">
+                <Link
+                  to="/login"
+                  className="hover:text-primary transition-all duration-300"
+                >
                   LogIn
                 </Link>
               </li>
               <li>
-                <Link to="/signUp" className="hover:text-primary transition-all duration-300">
+                <Link
+                  to="/signUp"
+                  className="hover:text-primary transition-all duration-300"
+                >
                   SignUp
                 </Link>
               </li>
@@ -177,7 +199,10 @@ const Header: React.FC = () => {
             <li>
               <button
                 className="hover:text-destructive transition-all duration-300"
-                onClick={() => console.log("User logged out")}
+                onClick={() => {
+                  deleteCookie();
+                  dispatch(setUser({ role: "guest" }));
+                }}
               >
                 LogOut
               </button>
