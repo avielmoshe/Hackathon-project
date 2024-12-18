@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { isUserValid } from "./utils/api.service.ts";
 import { setUser } from "./store/slices/userSlice.ts";
 import { useAppDispatch } from "./store/index.ts";
+import Yourpost from "./pages/Yourpost.tsx";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -43,6 +44,10 @@ function App() {
         {
           path: "/Profile/:id",
           element: <Profile />,
+        },
+        {
+          path: "/yourpost",
+          element: <Yourpost />,
         },
         {
           path: "*",
