@@ -7,12 +7,16 @@ import Login from "./pages/Login.jsx";
 import SignUp from "./pages/SignUp.jsx";
 import HomePage from "./pages/HomePage.jsx";
 import Profile from "./pages/Profile.jsx";
+import Error from "./pages/Error.jsx";
 
+function App() {
+  const router = createBrowserRouter([
+    {
       element: <Layout />,
       children: [
         {
           path: "/",
-          element: <HomePage />,
+          element: <HomxePage />,
         },
         {
           path: "/About",
@@ -23,8 +27,8 @@ import Profile from "./pages/Profile.jsx";
           element: <Profile />,
         },
         {
-          path: "/change-password",
-          element: <ChangePassword />,
+          path: "/error",
+          element: <Error />,
         },
       ],
     },
@@ -36,14 +40,6 @@ import Profile from "./pages/Profile.jsx";
       path: "/signUp",
       element: <SignUp />,
     },
-    // {
-    //   path: "/error",
-    //   element: <ErrorPage />,
-    // },
-    // {
-    //   path: "/contactUs",
-    //   element: <ContactUs />,
-    // },
   ]);
 
   return (
