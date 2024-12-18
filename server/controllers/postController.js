@@ -35,7 +35,7 @@ export const crateNewPost = async (req, res) => {
 export const getAllPosts = async (req, res) => {
   try {
     const posts = await Post.find()
-      .populate("userID", "id username email phone")
+      .populate("userID", "id username email phone profileImg")
       .populate("providerID", "providerType");
 
     if (posts.length === 0) {
