@@ -129,6 +129,19 @@ export const updateProviderApi = async (updateProvider: providerData) => {
   }
 };
 
+export const getAllPostsApi = async () => {
+  try {
+    const response = await axios.get(`${base_url}/api/post/`);
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      error: error.response?.data || error.message,
+    };
+  }
+};
+
 export const deleteCookie = async () => {
   try {
     Cookies.remove("jwt");

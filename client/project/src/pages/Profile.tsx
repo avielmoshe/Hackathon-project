@@ -19,7 +19,7 @@ function Profile() {
       if (providerData.dontHaveData) {
         navigate("/EditProfile");
       } else {
-        setIsLoaded(true);
+        setIsLoaded(true);a
       }
     })();
   }, [params.id, navigate]);
@@ -89,10 +89,7 @@ function Profile() {
       </main>
       {/* Footer */}
       <footer className="bg-gray-300 dark:bg-gray-800 text-gray-800 dark:text-gray-100 py-4 text-center">
-        <p>
-          &copy; {new Date().getFullYear()} Hackathon Project Team. All rights
-          reserved.
-        </p>
+        <p>&copy; {new Date().getFullYear()} Hackathon Project Team. All rights reserved.</p>
       </footer>
     </div>
   );
