@@ -3,16 +3,14 @@ import { hashPassword, comparePassword } from "../utils/auth.js";
 import JWT from "jsonwebtoken";
 const JWT_EXPIRATION = { expiresIn: "1h" };
 
-export const TokenValid = (req, res) => {
+export const TokenValid = async (req, res) => {
   try {
-    res.status(200).send({
-      id: req.user._id,
-      username: req.user.username,
-      profile: req.user.profile,
-      bio: req.user.bio,
-      nickname: req.user.nickname,
-      email: req.user.email,
-    });
+    const user = await User.findById(req.user.user._id);
+
+    console.log(req.user);
+    console.log(user);
+
+    res.status(200).send(user);
   } catch (error) {
     res
       .status(500)

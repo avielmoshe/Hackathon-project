@@ -8,8 +8,28 @@ import SignUp from "./pages/SignUp.tsx";
 import HomePage from "./pages/HomePage.tsx";
 import Profile from "./pages/Profile.tsx";
 import Error from "./pages/Error.tsx";
+import { useEffect } from "react";
+import { isUserValid } from "./utils/api.service.ts";
+import { setUser } from "./store/slices/userSlice.ts";
+import { useAppDispatch } from "./store/index.ts";
 
 function App() {
+  const dispatch = useAppDispatch();
+
+  useEffect(() => {
+    //IIFE
+    (async () => {
+      const dataAuth = await isUserValid();
+      if (dataAuth.userLogout) {
+        dispatch(setUser({ role: "guest" }));
+      } else {
+        console.log(dataAuth);
+
+        dispatch(setUser(dataAuth));
+      }
+    })();
+  }, []);
+
   const router = createBrowserRouter([
     {
       element: <Layout />,
@@ -42,13 +62,7 @@ function App() {
     },
   ]);
 
-  return (
-    <>
-      <h1>
-        <RouterProvider router={router} />
-      </h1>
-    </>
-  );
+  return <RouterProvider router={router} />;
 }
 
 export default App;
