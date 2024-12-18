@@ -12,6 +12,7 @@ import { useEffect } from "react";
 import { isUserValid } from "./utils/api.service.ts";
 import { setUser } from "./store/slices/userSlice.ts";
 import { useAppDispatch } from "./store/index.ts";
+import EditProfile from "./components/EditProfile.tsx";
 
 function App() {
   const dispatch = useAppDispatch();
