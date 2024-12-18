@@ -17,12 +17,12 @@ interface userLogin {
   password: string;
 }
 
-interface providerData {
-  providerType: string;
-  bannerImg: string;
-  bio: string;
-  location: string;
-  webLink: string;
+export interface providerData {
+  providerType?: string;
+  bannerImg?: string;
+  bio?: string;
+  location?: string;
+  webLink?: string;
 }
 export const signUp = async (user: user) => {
   try {
@@ -85,7 +85,6 @@ export const crateNewProvider = async (providerData: providerData) => {
     return response.data;
   } catch (error) {
     return {
-      userLogout: true,
       error: error.response?.data || error.message,
     };
   }
@@ -101,6 +100,30 @@ export const getProviderByUserId = async (userId: string) => {
   } catch (error) {
     return {
       dontHaveData: true,
+      error: error.response?.data || error.message,
+    };
+  }
+};
+
+export const updateProviderApi = async (updateProvider: providerData) => {
+  try {
+    const jwt = Cookies.get("jwt");
+    const response = await axios.patch(
+      `${base_url}/api/provider/updateProvider`,
+      updateProvider,
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+        withCredentials: true,
+      }
+    );
+
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
       error: error.response?.data || error.message,
     };
   }
