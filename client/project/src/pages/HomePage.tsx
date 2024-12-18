@@ -3,7 +3,6 @@ import { RootState } from "../store";
 
 function HomePage() {
   const user = useSelector((state: RootState) => state.user.user);
-  console.log(user);
 
   return (
     <div>
