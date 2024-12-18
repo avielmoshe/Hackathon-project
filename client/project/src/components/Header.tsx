@@ -7,7 +7,6 @@ import { RootState } from "@/store";
 
 const Header: React.FC = () => {
   const user = useSelector((state: RootState) => state.user.user);
-  console.log(user);
 
   return (
     <header className="w-full bg-sun-background dark:bg-dark-background text-sun-primary dark:text-dark-primary shadow-md">
