@@ -1,10 +1,11 @@
 import { useState } from "react";
-import axios from "axios";
 import { useNavigate } from "react-router-dom";
+import { signUp } from "../utils/api.service";
 
 const SignUp = () => {
   const [formData, setFormData] = useState({
-    name: "",
+    firstName: "",
+    lastName: "",
     email: "",
     username: "",
     password: "",
@@ -31,16 +32,14 @@ const SignUp = () => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: any) => {
+
+  const handleSubmit = async (e: any) => {
     e.preventDefault();
 
     if (Object.values(formData).some((field) => !field.trim())) {
       setMessage({ type: "error", text: "All fields are required!" });
       return;
     }
-
-    console.log(formData);
-
     if (formData.password.length < 6) {
       setMessage({
         type: "error",
@@ -48,29 +47,26 @@ const SignUp = () => {
       });
       return;
     }
-    registerUser();
-  };
-
-  const registerUser = async () => {
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/api/users/sign-up",
-        formData
-      );
-      console.log(response);
-
+    console.log(formData);
+    
+    const data =  await signUp(formData)
+    console.log(data);
+    if (data.status==="success") {
       setMessage({
         type: "success",
-        text: "Signup successful! Redirecting...",
-      });
-      setTimeout(() => navigate(-1), 2000);
-    } catch (err) {
+        text: data.message,
+      });    
+      navigate("/login")
+    }
+    else{
       setMessage({
         type: "error",
-        text: err.response?.data?.error || "Something went wrong. Try again.",
-      });
+        text: data.error.message,
+      });    
     }
+
   };
+
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
@@ -123,10 +119,20 @@ const SignUp = () => {
           </div>
           <div className="mb-4">
             <input
-              name="name"
+              name="firstName"
               type="text"
-              placeholder="Full name"
-              value={formData.name}
+              placeholder="first name"
+              value={formData.firstName}
+              onChange={handleInputChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+            />
+          </div>
+          <div className="mb-4">
+            <input
+              name="lastName"
+              type="text"
+              placeholder="last name"
+              value={formData.lastName}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             />
@@ -200,7 +206,7 @@ const SignUp = () => {
             Have an account?{" "}
             <span
               className="text-indigo-500 hover:underline cursor-pointer"
-              onClick={handleLogin}
+              onClick={()=>{navigate("/login")}}
             >
               Log in
             </span>
