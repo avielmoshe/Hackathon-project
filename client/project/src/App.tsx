@@ -2,7 +2,6 @@ import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Layout from "./pages/Layout.tsx";
 import About from "./pages/About.tsx";
-
 import Login from "./pages/Login.tsx";
 import SignUp from "./pages/SignUp.tsx";
 import HomePage from "./pages/HomePage.tsx";
@@ -13,6 +12,7 @@ import { isUserValid } from "./utils/api.service.ts";
 import { setUser } from "./store/slices/userSlice.ts";
 import { useAppDispatch } from "./store/index.ts";
 import EditProfile from "./components/EditProfile.tsx";
+import Yourpost from "./pages/Yourpost.tsx";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -48,6 +48,10 @@ function App() {
         {
           path: "/EditProfile",
           element: <EditProfile />,
+        },
+        {
+          path: "/yourpost",
+          element: <Yourpost />,
         },
         {
           path: "*",
