@@ -1,56 +1,33 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import axios, { AxiosError } from "axios";
+import { signIn } from "../utils/api.service";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [btnText, setBtnText] = useState("Log In");
   const [errorMessage, setErrorMessage] = useState("");
-  const passRef = useRef<HTMLInputElement>(null); // Properly initialize useRef for input
+  const passRef = useRef<HTMLInputElement>(null); 
   const navigate = useNavigate();
 
-  // Function to handle navigation
-  function handleNavigation(path: string) {
-    navigate(path);
-  }
+  
 
   const handleFormSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setBtnText("Loading...");
-    setErrorMessage("");
-
-    // Access password value from the ref
-    const password = passRef.current?.value || ""; // Fallback to an empty string if null
-
+    const password = passRef.current?.value || ""; 
     const userData = {
       username: userName,
       password,
     };
-
-    try {
-      const response = await axios.post(
-        "http://localhost:3000/api/users/login",
-        userData
-      );
-
-      console.log("Login Response:", response);
-
-      // Save user data and redirect
-      navigate("/home");
-    } catch (err: any | AxiosError) {
-      if (axios.isAxiosError(err)) {
-        // Handle Axios-specific errors
-        setErrorMessage(
-          err.response?.data?.error || "Something went wrong. Try again."
-        );
-      } else {
-        // Handle general errors
-        setErrorMessage("Something went wrong. Try again.");
-      }
-      console.error("Login Error:", err);
-    } finally {
+     const data= await signIn(userData)
+     if (data.success===false) {
+       console.log(data);
       setBtnText("Log In");
-    }
+      setErrorMessage(data.error.error);
+     }else{
+       navigate("/")
+       console.log(data);
+      }
+     
   };
 
   return (
