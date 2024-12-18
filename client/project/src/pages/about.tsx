@@ -5,49 +5,41 @@ import { FaLinkedin, FaInstagram, FaGithub, FaEnvelope } from "react-icons/fa";
 const teamMembers = [
   {
     name: "Ben",
-    photo:
-      "https://media.licdn.com/dms/image/v2/D5603AQEPPe9oOOqbgg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1691579027773?e=1738800000&v=beta&t=955U5tPINnXaFNYmrfFKsbego0mowqH-iA6HbEzaWhk",
+    photo: "https://media.licdn.com/dms/image/v2/D4D03AQGM-T3ky__9pA/profile-displayphoto-shrink_800_800/B4DZPFvBgxHcAg-/0/1734189259490?e=1740009600&v=beta&t=MIBIlMAXE1fdNdQ5X0NcbZZqrOD83dUtPrEU9VXXXl0",
     linkedin: "https://linkedin.com",
     instagram: "https://www.instagram.com/",
     github: "https://github.com/Ben-Kilinski",
-    email:
-      "https://accounts.google.com/v3/signin/identifier",
+    email: "https://accounts.google.com/v3/signin/identifier",
   },
   {
     name: "Eden",
-    photo:
-      "https://media.licdn.com/dms/image/v2/D4D03AQHXICd26TbbEw/profile-displayphoto-shrink_400_400/profile-displayphoto-shrink_400_400/0/1727113629944?e=1738800000&v=beta&t=F3MazAr9wJtwLoidj365Bc64SalVL7qJtHI34JofNGo",
-    linkedin: "https://www.linkedin.com/in/liav-ben-shimon/",
+    photo: "https://media.licdn.com/dms/image/v2/D5603AQGHDYebMU11Gg/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728936119785?e=1740009600&v=beta&t=QYTQU_X1Z_Js3mjTSuw1LK4OJAKPtDHEbH_V7qMopW4",
+    linkedin: "https://www.linkedin.com/in/eden-shabi-2b003a320/",
     instagram: "https://www.instagram.com/",
     github: "https://github.com/liavbenshimon",
-    email:
-      "https://accounts.google.com/v3/signin/identifier",
+    email: "https://accounts.google.com/v3/signin/identifier",
   },
   {
     name: "Elchanam",
-    photo:
-      "https://media.licdn.com/dms/image/v2/D5603AQF5nrXeEk3LIQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1727718821623?e=1738800000&v=beta&t=9IIbAtS-Tb9m1zgYGdwthm0ZQTlys265YUy4VEqOspk",
-    linkedin: "https://www.linkedin.com/in/nimrod-amos-a27a4b320/",
+    photo: "https://media.licdn.com/dms/image/v2/D4E03AQGogS1Mvt7ohQ/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1727109997734?e=1740009600&v=beta&t=aLYivL5g2jJ8IerJKXe-y7DqBXpo3FoOmAZFqt5RRBo",
+    linkedin: "https://www.linkedin.com/in/elchanan-chen-0b3037320/",
     instagram: "https://www.instagram.com/",
     github: "https://github.com/nimrodamos",
-    email:
-      "https://accounts.google.com/v3/signin/identifier",
+    email: "https://accounts.google.com/v3/signin/identifier",
   },
   {
     name: "Aviel",
-    photo:
-      "https://via.placeholder.com/150", 
-    linkedin: "https://linkedin.com/in/rachel",
+    photo: "https://media.licdn.com/dms/image/v2/D4D03AQEYpRWB3TE4qA/profile-displayphoto-shrink_800_800/profile-displayphoto-shrink_800_800/0/1728365101933?e=1740009600&v=beta&t=vxHVmp-WU2whb9WXTJjR8NVDNI6ajpZxg8FD9DvE3zA", 
+    linkedin: "https://www.linkedin.com/in/aviel-moshe-83385a320/",
     instagram: "https://www.instagram.com/rachel/",
-    github: "https://github.com/rachel",
-    email: "mailto:rachel@example.com",
+    github: "https://github.com/avielmoshe",
+    email: "mosheavieli@gmail.com",
   },
 ];
 
 const About = () => {
   return (
     <>
-      <Header />
       <div className="flex flex-col items-center py-8">
         {/* Title */}
         <div className="text-center mb-16">
