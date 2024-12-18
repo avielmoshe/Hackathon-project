@@ -1,6 +1,19 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+const regions = [
+  "North",
+  "Central",
+  "South",
+  "Jerusalem and Surroundings",
+  "Negev",
+  "Shfela (Lowland)",
+  "Sharon",
+  "Coastal Plain",
+  "Golan Heights",
+  "Galilee",
+];
+
 function EditProfile() {
   //  רק אם הid שמגיע מהקריאת api שווה לid של הסטייט הגלובלי - להציג את הedit
 
@@ -11,32 +24,39 @@ function EditProfile() {
     lastName: "",
     username: "",
     phone: "",
-    role: "",
     bio: "",
     webLink: "",
     provaiderType: "",
     profileImg: "",
     bannerImg: "",
+    location: "",
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
     if (Object.values(formData).some((field) => !field.trim())) {
-      console.log(formData);
+      return;
     }
+    console.log(formData);
   };
 
-  const handleRoleToggle = (selectedRole: string) => {
+  const handleTypeToggle = (selectedRole: string) => {
     setFormData((prevData) => ({
       ...prevData,
-      role: prevData.role === selectedRole ? "" : selectedRole,
+      provaiderType:
+        prevData.provaiderType === selectedRole ? "" : selectedRole,
     }));
   };
 
   // Handle input changes
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
+  };
+
+  // Handle region selection change
+  const handleRegionChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setFormData({ ...formData, location: e.target.value });
   };
 
   return (
@@ -58,6 +78,7 @@ function EditProfile() {
               value={formData.email}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
             />
           </div>
           <div className="mb-4">
@@ -68,6 +89,7 @@ function EditProfile() {
               value={formData.phone}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
             />
           </div>
 
@@ -79,6 +101,7 @@ function EditProfile() {
               value={formData.firstName}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
             />
           </div>
           <div className="mb-4">
@@ -89,6 +112,7 @@ function EditProfile() {
               value={formData.lastName}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
             />
           </div>
           <div className="mb-4">
@@ -99,12 +123,10 @@ function EditProfile() {
               value={formData.username}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
             />
           </div>
-          {/* 
-    
-    provaiderType: "",
-     */}
+
           <div className="mb-4">
             <input
               name="bio"
@@ -113,6 +135,7 @@ function EditProfile() {
               value={formData.bio}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
             />
           </div>
           <div className="mb-4">
@@ -123,6 +146,7 @@ function EditProfile() {
               value={formData.webLink}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
             />
           </div>
           <div className="mb-4">
@@ -133,6 +157,7 @@ function EditProfile() {
               value={formData.profileImg}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
             />
           </div>
           <div className="mb-4">
@@ -143,39 +168,34 @@ function EditProfile() {
               value={formData.bannerImg}
               onChange={handleInputChange}
               className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
+              required
             />
           </div>
-          {/* Role Toggle Buttons */}
-          <div className="flex justify-center mt-4 gap-4">
-            <button
-              type="button"
-              onClick={() => handleRoleToggle("customer")}
-              className={`w-32 h-10 ${
-                formData.role === "customer"
-                  ? "bg-indigo-500 text-white"
-                  : "bg-gray-200 text-gray-600"
-              } hover:bg-gray-300 rounded-lg flex items-center justify-center`}
+
+          <div className="mb-4">
+            <label htmlFor="location" className="block text-gray-700">
+              Select Region
+            </label>
+            <select
+              name="location"
+              value={formData.location}
+              onChange={handleRegionChange}
+              className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
             >
-              Customer
-            </button>
-            <button
-              type="button"
-              onClick={() => handleRoleToggle("provider")}
-              className={`w-32 h-10 ${
-                formData.role === "provider"
-                  ? "bg-indigo-500 text-white"
-                  : "bg-gray-200 text-gray-600"
-              } hover:bg-gray-300 rounded-lg flex items-center justify-center`}
-            >
-              Provider
-            </button>
+              <option value="">Select Region</option>
+              {regions.map((region, index) => (
+                <option key={index} value={region}>
+                  {region}
+                </option>
+              ))}
+            </select>
           </div>
           <div className="flex justify-center mt-4 gap-4">
             <button
               type="button"
-              onClick={() => handleRoleToggle("private")}
+              onClick={() => handleTypeToggle("private")}
               className={`w-32 h-10 ${
-                formData.role === "private"
+                formData.provaiderType === "private"
                   ? "bg-indigo-500 text-white"
                   : "bg-gray-200 text-gray-600"
               } hover:bg-gray-300 rounded-lg flex items-center justify-center`}
@@ -184,9 +204,9 @@ function EditProfile() {
             </button>
             <button
               type="button"
-              onClick={() => handleRoleToggle("ngo")}
+              onClick={() => handleTypeToggle("ngo")}
               className={`w-32 h-10 ${
-                formData.role === "ngo"
+                formData.provaiderType === "ngo"
                   ? "bg-indigo-500 text-white"
                   : "bg-gray-200 text-gray-600"
               } hover:bg-gray-300 rounded-lg flex items-center justify-center`}
@@ -194,28 +214,6 @@ function EditProfile() {
               ngo
             </button>
           </div>
-          <p className="text-xs text-gray-500 mb-4">
-            People who use our service may have uploaded your contact
-            information to Instagram.{" "}
-            <span className="text-blue-500 hover:underline cursor-pointer">
-              Learn More
-            </span>
-          </p>
-          <p className="text-xs text-gray-500 mb-4">
-            By signing up, you agree to our{" "}
-            <span className="text-blue-500 hover:underline cursor-pointer">
-              Terms
-            </span>
-            ,{" "}
-            <span className="text-blue-500 hover:underline cursor-pointer">
-              Privacy Policy
-            </span>
-            , and{" "}
-            <span className="text-blue-500 hover:underline cursor-pointer">
-              Cookies Policy
-            </span>
-            .
-          </p>
           <button
             type="submit"
             className="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded-lg transition-colors"
@@ -223,8 +221,6 @@ function EditProfile() {
             Sign up
           </button>
         </form>
-
-        <p className="text-center text-sm text-gray-600 mt-4">Get the app.</p>
       </div>
     </div>
   );
