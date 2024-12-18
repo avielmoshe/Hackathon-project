@@ -1,12 +1,17 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { signIn } from "../utils/api.service";
+import { useDispatch, useSelector } from "react-redux";
 
 const Login = () => {
   const [userName, setUserName] = useState("");
   const [btnText, setBtnText] = useState("Log In");
   const [errorMessage, setErrorMessage] = useState("");
   const passRef = useRef<HTMLInputElement>(null); 
+  const dispatch = useDispatch();
+  const user = useSelector((state) => state.user);
+   console.log(user);
+
   const navigate = useNavigate();
 
   
@@ -24,6 +29,7 @@ const Login = () => {
       setBtnText("Log In");
       setErrorMessage(data.error.error);
      }else{
+      dis
        navigate("/")
        console.log(data);
       }
@@ -85,7 +91,7 @@ const Login = () => {
             Don't have an account?{" "}
             <span
               className="text-indigo-500 hover:underline cursor-pointer"
-              onClick={() => handleNavigation("/signUp")}
+              onClick={() => navigate("/signUp")}
             >
               Sign up
             </span>
