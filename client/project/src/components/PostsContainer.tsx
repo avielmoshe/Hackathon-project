@@ -4,6 +4,7 @@ import React, { useEffect, useState } from "react";
 import Post from "./Post.tsx";
 
 export interface PostType {
+  profileImg?: string;
   createdAt: string;
   description: string;
   location: string[];
@@ -18,7 +19,7 @@ export interface PostType {
 }
 
 const PostsContainer: React.FC = () => {
-  const [posts, setPosts] = useState<Post[]>([]);
+  const [posts, setPosts] = useState<PostType[]>([]);
   useEffect(() => {
     try {
       (async () => {
