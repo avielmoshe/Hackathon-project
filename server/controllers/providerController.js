@@ -68,7 +68,10 @@ export const updateProvider = async (req, res) => {
     if (location) updateData.location = location;
     if (webLink) updateData.webLink = webLink;
     if (profileImg) {
-      await User.findByIdAndUpdate(userId, profileImg, {
+      const updateDataInUser = {};
+      updateDataInUser.profileImg = profileImg;
+
+      await User.findByIdAndUpdate(userId, updateDataInUser, {
         new: true,
       });
     }

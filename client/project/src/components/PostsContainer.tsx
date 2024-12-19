@@ -26,6 +26,7 @@ const PostsContainer: React.FC = () => {
       (async () => {
         const response = await getAllPostsApi();
         setPosts(response.posts);
+        console.log(posts);
       })();
     } catch (error) {}
   }, []);

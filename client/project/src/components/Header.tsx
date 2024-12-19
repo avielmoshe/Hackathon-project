@@ -17,7 +17,6 @@ const Header: React.FC = () => {
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
-  console.log(user.id);
 
   return (
     <>
