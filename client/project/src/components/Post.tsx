@@ -23,7 +23,7 @@ const Post = ({ post }: PropsTypes) => {
       <div className="flex items-center space-x-4 mb-4">
         <div
           className="rounded-full w-16 h-16 bg-cover bg-center border-2 border-blue-400 dark:border-gray-600"
-          style={{ backgroundImage: ` url(${post.profileimg}) ` }}
+          style={{ backgroundImage: ` url(${post.profileImg}) ` }}
         ></div>
         <div>
           <h2 className="text-2xl font-extrabold text-gray-800 dark:text-gray-100">
