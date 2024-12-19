@@ -17,7 +17,6 @@ const regions = [
 function EditProfile() {
   //  רק אם הid שמגיע מהקריאת api שווה לid של הסטייט הגלובלי - להציג את הedit
 
-  // location
   const [formData, setFormData] = useState({
     email: "",
     firstName: "",
