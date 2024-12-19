@@ -344,7 +344,7 @@ function Yourpost({ btnText }) {
             data={data}
           />
         </div>
-        {btnText || (
+        {btnText === undefined && (
           <div>
             <input
               name="description"
