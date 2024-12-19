@@ -21,7 +21,6 @@ function App() {
     //IIFE
     (async () => {
       const dataAuth = await isUserValid();
-      console.log(dataAuth);
 
       if (dataAuth.userLogout) {
         dispatch(setUser({ role: "guest" }));
