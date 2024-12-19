@@ -9,6 +9,8 @@ export default {
         foreground: "hsl(var(--foreground))",
         input: "hsl(var(--input))",
         border: "hsl(var(--border))",
+        primary: "#3b82f6", 
+        destructive: "#ef4444", 
       },
       keyframes: {
         "accordion-down": {
