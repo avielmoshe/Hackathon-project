@@ -1,4 +1,10 @@
-import { crateNewProvider, updateProviderApi } from "@/utils/api.service";
+import { useAppDispatch } from "@/store";
+import { setUser } from "@/store/slices/userSlice";
+import {
+  crateNewProvider,
+  isUserValid,
+  updateProviderApi,
+} from "@/utils/api.service";
 import { useState } from "react";
 
 const regions = [
@@ -17,8 +23,6 @@ const regions = [
 function EditProfile() {
   //  רק אם הid שמגיע מהקריאת api שווה לid של הסטייט הגלובלי - להציג את הedit
 
-
-
   const [formData, setFormData] = useState({
     bio: "",
     webLink: "",
@@ -28,6 +32,7 @@ function EditProfile() {
     location: "",
   });
   const [errorMessage, setErrorMessage] = useState("");
+  const dispatch = useAppDispatch();
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
@@ -41,14 +46,24 @@ function EditProfile() {
     setErrorMessage("");
 
     const response = await crateNewProvider(formData);
+    console.log(response);
+
     if (response.status) {
       setErrorMessage(response.status);
     }
     if (response.error.message === "provider already exists") {
       const updatedResponse = await updateProviderApi(formData);
-      console.log(updatedResponse);
 
       setErrorMessage(updatedResponse.message);
+      (async () => {
+        const dataAuth = await isUserValid();
+
+        if (dataAuth.userLogout) {
+          dispatch(setUser({ role: "guest" }));
+        } else {
+          dispatch(setUser(dataAuth));
+        }
+      })();
     }
   };
 

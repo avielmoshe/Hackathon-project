@@ -1,5 +1,7 @@
 import Provider from "../models/provider.js";
 import User from "../models/userModel.js";
+import JWT from "jsonwebtoken";
+const JWT_EXPIRATION = { expiresIn: "1h" };
 
 export const crateNewProvider = async (req, res) => {
   const { providerType, bannerImg, bio, location, webLink } = req.body;
@@ -9,6 +11,8 @@ export const crateNewProvider = async (req, res) => {
       .send({ error: "providerType or content are required" });
   }
   const userid = req.user.id;
+  console.log(userid);
+
   const existingProvider = await Provider.findOne({ userID: userid });
   if (existingProvider) {
     return res.status(400).json({ message: "provider already exists" });
@@ -85,7 +89,29 @@ export const updateProvider = async (req, res) => {
         new: true,
       }
     );
+    const user = req.user;
 
+    const token = JWT.sign(
+      {
+        id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
+        userName: user.userName,
+        email: user.email,
+        phone: user.phone,
+        role: user.role,
+        profileImg: profileImg,
+      },
+      process.env.JWT_KEY,
+      JWT_EXPIRATION
+    );
+
+    res.cookie("jwt", token, {
+      httpOnly: false,
+      secure: true,
+      sameSite: "strict",
+      maxAge: 3600000,
+    });
     res.status(201).send({
       message: "profile updated successfully",
       updateProvider,
