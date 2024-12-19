@@ -17,8 +17,6 @@ const regions = [
 function EditProfile() {
   //  רק אם הid שמגיע מהקריאת api שווה לid של הסטייט הגלובלי - להציג את הedit
 
-
-
   const [formData, setFormData] = useState({
     bio: "",
     webLink: "",
@@ -27,6 +25,7 @@ function EditProfile() {
     bannerImg: "",
     location: "",
   });
+
   const [errorMessage, setErrorMessage] = useState("");
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
