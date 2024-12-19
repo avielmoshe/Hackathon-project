@@ -57,7 +57,7 @@ export const getAllPosts = async (req, res) => {
 
 export const getFilteredPosts = async (req, res) => {
   try {
-    const { serviceType, status, location, providerType } = req.query;
+    const { serviceType, status, location, providerType, title } = req.query;
     const query = {};
     if (serviceType) {
       query.serviceType = { $in: serviceType.split(",") };
@@ -69,7 +69,10 @@ export const getFilteredPosts = async (req, res) => {
       query.location = { $in: location.split(",") };
     }
     if (providerType) {
-      query.location = { $in: providerType.split(",") };
+      query.providerType = { $in: providerType.split(",") };
+    }
+    if (title) {
+      query.title = { $in: title.split(",") };
     }
 
     const posts = await Post.find(query)

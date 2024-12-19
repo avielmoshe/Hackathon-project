@@ -8,7 +8,6 @@ function HomePage() {
 
   return (
     <div>
-      <div className="">Filter</div>
       <Yourpost btnText={"Filter"} />
       <PostsContainer />
     </div>

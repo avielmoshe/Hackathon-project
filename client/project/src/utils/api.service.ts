@@ -152,11 +152,16 @@ export const createPost = async (newPostData) => {
   }
 };
 
-export const getFilteredPosts = async (urlWithFilter) => {
+export const getFilteredPosts = async (filters) => {
   try {
     const jwt = Cookies.get("jwt");
+
+    // Construct the query string from the filters object
+    const queryParams = new URLSearchParams(filters).toString();
+
+    // Make the GET request with query parameters
     const response = await axios.get(
-      `${base_url}/api/post/getFilteredPosts/${urlWithFilter}`,
+      `${base_url}/api/post/getFilteredPosts?${queryParams}`,
       {
         headers: {
           Authorization: `Bearer ${jwt}`,
@@ -164,6 +169,7 @@ export const getFilteredPosts = async (urlWithFilter) => {
         withCredentials: true,
       }
     );
+
     return response.data;
   } catch (error) {
     console.log(error);

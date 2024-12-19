@@ -3,6 +3,7 @@ import { Link, useSearchParams } from "react-router-dom";
 import Post from "@/components/Post";
 import { PostType } from "@/components/PostsContainer";
 import { getFilteredPosts } from "@/utils/api.service";
+import Yourpost from "./Yourpost";
 
 function FilterPost() {
   const [searchParams] = useSearchParams();
@@ -12,7 +13,6 @@ function FilterPost() {
   for (let [key, value] of searchParams.entries()) {
     queryData[key] = value.includes(",") ? value.split(",") : value;
   }
-  console.log("Query Data:", queryData);
 
   const [posts, setPosts] = useState<PostType[]>([]);
 
@@ -33,6 +33,7 @@ function FilterPost() {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
+      <Yourpost btnText={"Filter"} />
       {posts.length > 0 ? (
         posts.map((post) => (
           <Link
