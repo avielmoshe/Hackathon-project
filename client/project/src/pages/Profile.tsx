@@ -37,19 +37,23 @@ function Profile() {
   }
 
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="flex flex-col min-h-screen bg-gray-50">
+      {/* Banner Section */}
       <main className="flex-grow">
         <div
-          className="w-full h-72 bg-cover bg-center"
+          className="w-full h-72 bg-cover bg-center rounded-b-xl"
           style={{
             backgroundImage: `url(${profileData.bannerImg || DefaultBanner})`,
           }}
         ></div>
-        <div className="flex flex-col items-center px-4 md:px-12 mt-10 ">
-          <div className="flex flex-col md:flex-row w-full max-w-4xl p-5">
-            <div className="flex flex-col items-center md:items-start ">
+
+        {/* Profile Content Section */}
+        <div className="flex flex-col items-center px-4 md:px-12 mt-10">
+          <div className="flex flex-col md:flex-row w-full max-w-4xl p-6 bg-white shadow-xl rounded-xl">
+            {/* Profile Image */}
+            <div className="flex flex-col items-center md:items-start mb-6 md:mb-0">
               <div
-                className="rounded-full  w-36 h-36 bg-cover bg-center"
+                className="rounded-full w-36 h-36 bg-cover bg-center border-4 border-white shadow-md"
                 style={{
                   backgroundImage: `url(${
                     profileData.userID.profileImg || DefaultProfile
@@ -57,58 +61,70 @@ function Profile() {
                 }}
               ></div>
             </div>
-            <div className="flex flex-col flex-grow mt-8 md:mt-0 md:ml-8 gap-2">
-              <h1 className="font-bold text-3xl">
+
+            {/* Profile Info */}
+            <div className="flex flex-col  md:ml-8 gap-4">
+              <h1 className="font-bold text-4xl text-gray-800">
                 {profileData.userID?.username &&
                   profileData.userID?.username.charAt(0).toUpperCase() +
                     profileData.userID?.username.slice(1).toLowerCase()}
-                <>
-                  {user.id === profileData.userID._id && (
-                    <button
-                      className="bg-blue-50 text-2xl py-2 px-4 ml-5 rounded-full cursor-pointer hover:bg-blue-100 text-blue-800 shadow-md"
-                      onClick={() => navigate("/EditProfile")}
-                    >
-                      Edit Profile
-                    </button>
-                  )}
-                </>
+                {user.id === profileData.userID._id && (
+                  <button
+                    className="bg-blue-500 text-xl py-2 px-4 ml-5 rounded-full text-white shadow-md hover:bg-blue-600 focus:outline-none"
+                    onClick={() => navigate("/EditProfile")}
+                  >
+                    Edit Profile
+                  </button>
+                )}
               </h1>
-              <p>
-                <b>Location: </b> {profileData.location}
+
+              {/* Location */}
+              <p className="text-lg text-gray-700">
+                <b>Location:</b> {profileData.location}
               </p>
-              <p>
+
+              {/* Contact Info */}
+              <p className="text-lg text-gray-700 mt-2">
                 <b>Contact us:</b>
               </p>
+
               <div className="rounded-xl max-w-60 p-4">
                 <p>
                   <b>Email: </b> {profileData.userID?.email}
+
                 </p>
-                <p>
-                  <b>Mobile number: </b> {profileData.userID?.phone}
+                <p className="text-gray-800">
+                  <b>Mobile number:</b> {profileData.userID?.phone}
                 </p>
                 {profileData.webLink && (
-                  <p>
-                    <b>Website: </b>
+                  <p className="text-gray-800">
                     <a
-                      className="text-blue-700 underline"
+                      className="text-blue-600 underline hover:text-blue-800"
                       href={profileData.webLink}
                       target="_blank"
+                      rel="noopener noreferrer"
                     >
-                      {profileData.webLink}
+                      To Our Website
                     </a>
                   </p>
                 )}
               </div>
-              <p className="mt-4">
+
+              {/* Bio */}
+              <p className="mt-4 text-lg text-gray-700">
                 <b>Bio:</b>
               </p>
+
               <div className="p-4 rounded-xl max-w-screen-lg">
+
                 {profileData.bio && <p>{profileData.bio}</p>}
               </div>
             </div>
           </div>
         </div>
       </main>
+
+      {/* Footer */}
       <footer className="bg-gray-300 dark:bg-gray-800 text-gray-800 dark:text-gray-100 py-4 text-center">
         <p>
           &copy; {new Date().getFullYear()} Hackathon Project Team. All rights
