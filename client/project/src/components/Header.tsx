@@ -112,16 +112,6 @@ const Header: React.FC = () => {
             </ul>
           </nav>
 
-          {/* Search Bar */}
-          <div className="relative w-1/3 hidden lg:block">
-            <FaSearch className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground" />
-            <input
-              type="text"
-              placeholder="Search..."
-              className="w-full p-2 pl-10 rounded-full bg-input text-foreground placeholder-muted-foreground focus:outline-none"
-            />
-          </div>
-
           {/* Profile Image e Dark Mode */}
           <div className="flex items-center space-x-4">
             {user.profileImg ? (
