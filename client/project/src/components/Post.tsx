@@ -1,11 +1,4 @@
-// const Post = ({ post }) => {
-//   console.log(post);
-
 import { PostType } from "./PostsContainer";
-
-//   return <div>{post.title}</div>;
-// };
-// export default Post;
 
 interface PropsTypes {
   post: PostType
