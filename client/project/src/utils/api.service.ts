@@ -129,6 +129,51 @@ export const updateProviderApi = async (updateProvider: providerData) => {
   }
 };
 
+export const createPost = async (newPostData) => {
+  try {
+    const jwt = Cookies.get("jwt");
+    const response = await axios.post(
+      `${base_url}/api/post/cratePost`,
+      newPostData,
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      error: error.response?.data || error.message,
+    };
+  }
+};
+
+export const getFilteredPosts = async (urlWithFilter) => {
+  try {
+    const jwt = Cookies.get("jwt");
+    const response = await axios.get(
+      `${base_url}/api/post/getFilteredPosts/${urlWithFilter}`,
+      {
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+        withCredentials: true,
+      }
+    );
+    return response.data;
+  } catch (error) {
+    console.log(error);
+    return {
+      success: false,
+      error: error.response?.data || error.message,
+    };
+  }
+};
+
 export const getAllPostsApi = async () => {
   try {
     const response = await axios.get(`${base_url}/api/post/`);
