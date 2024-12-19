@@ -1,6 +1,24 @@
 import { getAllPostsApi } from "@/utils/api.service";
-import React, { useEffect, useState } from "react";
-import Post from "./Post";
+import React, { useEffect, useState } from "react"
+
+import Post from "./Post.tsx";
+
+export interface PostType {
+
+  createdAt: string
+  description: string
+  location: string[]
+  providerID: { _id: string, providerType: string }
+  providerType: string
+  serviceType: string[]
+  status: string[]
+  title: string
+  userID: { _id: string, username: string, phone: number, email: string }
+  __v: number
+  _id: string
+}
+
+
 
 const PostsContainer: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
