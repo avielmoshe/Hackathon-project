@@ -18,6 +18,7 @@ export const crateNewPost = async (req, res) => {
       serviceType,
       status,
       location,
+      providerType: providerData.providerType,
     });
 
     const savedPost = await newPost.save();
@@ -54,19 +55,38 @@ export const getAllPosts = async (req, res) => {
   }
 };
 
-// export const getPostById = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const postById = await Post.findById(id);
-//     if (!postById) {
-//       return res.status(404).send({ error: "post not found" });
-//     }
-//     res.status(200).send(postById);
-//   } catch (error) {
-//     console.error("Error finding postById by ID:", error);
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
+export const getFilteredPosts = async (req, res) => {
+  try {
+    const { serviceType, status, location, providerType } = req.query;
+    const query = {};
+    if (serviceType) {
+      query.serviceType = { $in: serviceType.split(",") };
+    }
+    if (status) {
+      query.status = { $in: status.split(",") };
+    }
+    if (location) {
+      query.location = { $in: location.split(",") };
+    }
+    if (providerType) {
+      query.location = { $in: providerType.split(",") };
+    }
+
+    const posts = await Post.find(query)
+      .populate("userID", "id username email phone profileImg")
+      .populate("providerID", "providerType");
+
+    res.status(200).json({
+      message: "Filtered posts retrieved successfully",
+      posts,
+    });
+  } catch (error) {
+    console.error("Error retrieving posts:", error);
+    res.status(500).json({
+      error: "Server error. Could not retrieve posts.",
+    });
+  }
+};
 
 // export const getMyPosts = async (req, res) => {
 //   try {

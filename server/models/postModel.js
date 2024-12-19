@@ -11,6 +11,13 @@ const postSchema = new mongoose.Schema({
     ref: "Provider",
     required: true,
   },
+  providerType: {
+    type: String,
+    enum: ["private", "ngo"],
+    required: true,
+    trim: true,
+    lowercase: true,
+  },
   title: { type: String, required: true },
   description: { type: String, required: true },
   serviceType: {

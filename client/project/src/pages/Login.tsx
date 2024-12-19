@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signIn } from "../utils/api.service";
+import { isUserValid, signIn } from "../utils/api.service";
 import { setUser } from "../store/slices/userSlice";
 import { useAppDispatch } from "../store";
 
@@ -25,7 +25,14 @@ const Login = () => {
       setBtnText("Log In");
       setErrorMessage(data.error.error);
     } else {
-      dispatch(setUser(data.user));
+      (async () => {
+        const dataAuth = await isUserValid();
+        if (dataAuth.userLogout) {
+          dispatch(setUser({ role: "guest" }));
+        } else {
+          dispatch(setUser(dataAuth));
+        }
+      })();
       navigate("/");
     }
   };

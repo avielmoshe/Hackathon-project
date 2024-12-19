@@ -162,7 +162,7 @@ function EditProfile() {
           )}
           <button
             type="submit"
-            className="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 rounded-lg transition-colors"
+            className="w-full bg-indigo-500 hover:bg-indigo-600 text-white py-2 px-4 mt-3 rounded-lg transition-colors"
           >
             Update Profile
           </button>
