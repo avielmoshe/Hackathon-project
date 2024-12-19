@@ -45,7 +45,7 @@ function Profile() {
         ></div>
         <div className="flex flex-col items-center px-4 md:px-12">
           <div className="flex flex-col md:flex-row w-full max-w-4xl p-5">
-            <div className="flex flex-col items-center md:items-start md:w-1/3">
+            <div className="flex flex-col items-center md:items-start ">
               <div
                 className="rounded-full  w-36 h-36 bg-cover bg-center"
                 style={{
@@ -61,7 +61,7 @@ function Profile() {
                   profileData.userID?.username.charAt(0).toUpperCase() +
                     profileData.userID?.username.slice(1).toLowerCase()}
                 <button
-                  className="bg-blue-50 mt-8 py-2 px-4 ml-2 rounded-full cursor-pointer hover:bg-blue-100 text-blue-800 shadow-md mb-3"
+                  className="bg-blue-50 text-2xl mt-8 py-2 px-4 ml-5 rounded-full cursor-pointer hover:bg-blue-100 text-blue-800 shadow-md mb-3"
                   onClick={() => navigate("/EditProfile")}
                 >
                   Edit
@@ -90,7 +90,7 @@ function Profile() {
                 </p>
               )}
               <p className="mt-4">Bio:</p>
-              <div className="bg-gray-50 text-black p-4 rounded-xl min-h-20">
+              <div className="bg-gray-50 text-black p-4 rounded-xl max-w-56">
                 {profileData.bio && <p>{profileData.bio}</p>}
               </div>
             </div>
