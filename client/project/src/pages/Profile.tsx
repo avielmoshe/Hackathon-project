@@ -79,7 +79,7 @@ function Profile() {
               <p>
                 <b>Contact us:</b>
               </p>
-              <div className="bg-slate-100 rounded-xl max-w-60 p-4">
+              <div className="rounded-xl max-w-60 p-4">
                 <p>
                   <b>Email: </b> {profileData.userID?.email}
                 </p>
@@ -102,7 +102,7 @@ function Profile() {
               <p className="mt-4">
                 <b>Bio:</b>
               </p>
-              <div className=" text-black p-4 rounded-xl max-w-56">
+              <div className="p-4 rounded-xl max-w-screen-lg">
                 {profileData.bio && <p>{profileData.bio}</p>}
               </div>
             </div>

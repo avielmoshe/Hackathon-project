@@ -323,9 +323,9 @@ function Yourpost({ btnText }) {
   };
 
   return (
-    <div className="mt-10 max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+    <div className="mt-10 max-w-4xl mx-auto bg-blue-200 p-12 rounded-lg shadow-md dark:bg-gray-700">
       <form onSubmit={handleSubmit} className="space-y-6">
-        <div>
+        <div className="dark:text-black">
           <MapAccordion
             arr={locations}
             setData={setData}
@@ -335,7 +335,7 @@ function Yourpost({ btnText }) {
           />
         </div>
 
-        <div>
+        <div className="dark:text-black">
           <MapAccordion
             arr={statuses}
             setData={setData}
