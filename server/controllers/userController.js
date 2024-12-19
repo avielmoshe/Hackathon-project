@@ -5,6 +5,8 @@ const JWT_EXPIRATION = { expiresIn: "1h" };
 
 export const TokenValid = async (req, res) => {
   try {
+    console.log(req.user);
+
     res.status(200).send({
       id: req.user.id,
       firstName: req.user.firstName,
@@ -12,6 +14,7 @@ export const TokenValid = async (req, res) => {
       email: req.user.email,
       phone: req.user.phone,
       role: req.user.role,
+      profileImg: req.user.profileImg,
     });
   } catch (error) {
     res
@@ -100,6 +103,7 @@ export const singInUser = async (req, res) => {
         email: user.email,
         phone: user.phone,
         role: user.role,
+        profileImg: user.profileImg,
       },
       process.env.JWT_KEY,
       JWT_EXPIRATION
