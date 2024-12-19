@@ -31,6 +31,7 @@ function EditProfile() {
     bannerImg: "",
     location: "",
   });
+
   const [errorMessage, setErrorMessage] = useState("");
   const dispatch = useAppDispatch();
 
