@@ -1,57 +1,92 @@
-export const crateNewPost = async (req, res) => {
-  const { title, content, post } = req.body;
-  if (!title && !content && !post) {
-    return res.status(400).send({ error: "title or content are required" });
-  }
-  const id = req.user._id;
-  const username = req.user.username;
-  const profileImg = req.user.profile;
+import Post from "../models/postModel.js";
+import provider from "../models/provider.js";
 
+export const crateNewPost = async (req, res) => {
+  const { title, description, serviceType, status, location } = req.body;
+  if (!title || !description || !serviceType || !status || !location) {
+    return res.status(400).send({ error: "All fields are required" });
+  }
+
+  const userId = req.user.id;
+  const providerData = await provider.findOne({ userID: userId });
   try {
     const newPost = new Post({
-      profileImg: profileImg,
-      post,
-      username: username,
+      userID: userId,
+      providerID: providerData._id,
       title,
-      content,
-      createdBy: id,
+      description,
+      serviceType,
+      status,
+      location,
+      providerType: providerData.providerType,
     });
 
     const savedPost = await newPost.save();
+
     res.status(201).send({
-      status: "post Succefully created",
-      savedPost,
+      message: "Post successfully created",
+      post: savedPost,
     });
   } catch (error) {
-    console.error("Error creating book:", error);
-    res.status(500).json({ error: "Server error. Could not create book." });
+    console.error("Error creating post:", error);
+    res.status(500).send({ error: "Server error. Could not create post." });
   }
 };
 
-// export const getPosts = async (req, res) => {
-//   try {
-//     const Posts = await Post.find();
+export const getAllPosts = async (req, res) => {
+  try {
+    const posts = await Post.find()
+      .populate("userID", "id username email phone profileImg")
+      .populate("providerID", "providerType");
 
-//     res.status(200).send(Posts);
-//   } catch (error) {
-//     console.error("Error fetching posts:", error);
-//     res.status(500).send({ error: "Server error" });
-//   }
-// };
+    if (posts.length === 0) {
+      return res
+        .status(404)
+        .send({ message: "No posts found matching the criteria" });
+    }
 
-// export const getPostById = async (req, res) => {
-//   try {
-//     const { id } = req.params;
-//     const postById = await Post.findById(id);
-//     if (!postById) {
-//       return res.status(404).send({ error: "post not found" });
-//     }
-//     res.status(200).send(postById);
-//   } catch (error) {
-//     console.error("Error finding postById by ID:", error);
-//     res.status(500).json({ error: "Server error" });
-//   }
-// };
+    res.status(200).send({
+      message: "Posts retrieved successfully",
+      posts,
+    });
+  } catch (error) {
+    console.error("Error fetching posts:", error);
+    res.status(500).send({ error: "Server error. Could not fetch posts." });
+  }
+};
+
+export const getFilteredPosts = async (req, res) => {
+  try {
+    const { serviceType, status, location, providerType } = req.query;
+    const query = {};
+    if (serviceType) {
+      query.serviceType = { $in: serviceType.split(",") };
+    }
+    if (status) {
+      query.status = { $in: status.split(",") };
+    }
+    if (location) {
+      query.location = { $in: location.split(",") };
+    }
+    if (providerType) {
+      query.location = { $in: providerType.split(",") };
+    }
+
+    const posts = await Post.find(query)
+      .populate("userID", "id username email phone profileImg")
+      .populate("providerID", "providerType");
+
+    res.status(200).json({
+      message: "Filtered posts retrieved successfully",
+      posts,
+    });
+  } catch (error) {
+    console.error("Error retrieving posts:", error);
+    res.status(500).json({
+      error: "Server error. Could not retrieve posts.",
+    });
+  }
+};
 
 // export const getMyPosts = async (req, res) => {
 //   try {

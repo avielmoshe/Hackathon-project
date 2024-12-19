@@ -8,9 +8,11 @@ export const crateNewProvider = async (req, res) => {
       .status(400)
       .send({ error: "providerType or content are required" });
   }
-
   const userid = req.user.id;
-
+  const existingProvider = await Provider.findOne({ userID: userid });
+  if (existingProvider) {
+    return res.status(400).json({ message: "provider already exists" });
+  }
   try {
     const newProvider = new Provider({
       providerType: providerType,

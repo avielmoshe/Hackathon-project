@@ -1,27 +1,23 @@
 import express from "express";
 import {
   crateNewPost,
-  getPosts,
-  getPostById,
-  deletePostById,
-  getMyPosts,
-  likePost,
+  getAllPosts,
+  getFilteredPosts,
 } from "../controllers/postController.js";
 import { verifyToken } from "../middleware/auth.js";
-
 
 const router = express.Router();
 
 router.post("/cratePost", verifyToken, crateNewPost);
 
-router.get("/", getPosts);
+router.get("/", getAllPosts);
 
-router.get("/myPosts", verifyToken, getMyPosts);
+router.get("/getFilteredPosts", getFilteredPosts);
 
-router.get("/byId/:id", getPostById);
+// router.get("/byId/:id", getPostById);
 
-router.delete("/byId/:id", verifyToken, deletePostById);
+// router.delete("/byId/:id", verifyToken, deletePostById);
 
-router.put("/like/:id", verifyToken,likePost)
+// router.put("/like/:id", verifyToken,likePost)
 
 export default router;

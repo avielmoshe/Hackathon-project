@@ -1,9 +1,8 @@
 import { useRef, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { signIn } from "../utils/api.service";
+import { isUserValid, signIn } from "../utils/api.service";
 import { setUser } from "../store/slices/userSlice";
 import { useAppDispatch } from "../store";
-
 
 const Login = () => {
   const [userName, setUserName] = useState("");
@@ -26,7 +25,14 @@ const Login = () => {
       setBtnText("Log In");
       setErrorMessage(data.error.error);
     } else {
-      dispatch(setUser(data.user));
+      (async () => {
+        const dataAuth = await isUserValid();
+        if (dataAuth.userLogout) {
+          dispatch(setUser({ role: "guest" }));
+        } else {
+          dispatch(setUser(dataAuth));
+        }
+      })();
       navigate("/");
     }
   };
@@ -35,7 +41,6 @@ const Login = () => {
     <div className="min-h-screen flex items-center justify-center bg-gray-100">
       <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
         <div className="text-center mb-6">
-          <div className="hlLogo mx-auto bg-gray-300 rounded-full h-16 w-16"></div>
           <h1 className="text-2xl font-bold mt-4">Log In</h1>
         </div>
         <form onSubmit={handleFormSubmit}>

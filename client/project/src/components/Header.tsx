@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FaSearch, FaBars } from "react-icons/fa";
 import DarkMode from "./DarkMode";
-import { Link } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "@/store";
 import { deleteCookie } from "@/utils/api.service";
@@ -11,18 +11,19 @@ const Header: React.FC = () => {
   const user = useSelector((state: RootState) => state.user.user);
 
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Controla a Sidebar
-
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
+  console.log(user.id);
 
   return (
     <>
       {/* Header */}
-      <header className="w-full bg-background text-foreground shadow-md transition-all duration-300">
+      <header className="fixed top-0 z-50  w-full  dark:bg-gray-900  bg-gray-400 text-foreground shadow-md transition-all duration-300">
         <div className="container mx-auto flex items-center justify-between p-4">
           {/* Menu Hamburguer para Mobile */}
           <button
@@ -36,12 +37,18 @@ const Header: React.FC = () => {
           <nav className="hidden lg:flex">
             <ul className="flex space-x-6">
               <li>
-                <Link to="/" className="hover:text-primary hover:scale-110 transition-all duration-300">
+                <Link
+                  to="/"
+                  className="hover:text-primary hover:scale-110 transition-all duration-300"
+                >
                   Home Page
                 </Link>
               </li>
               <li>
-                <Link to="/About" className="hover:text-primary hover:scale-110 transition-all duration-300">
+                <Link
+                  to="/About"
+                  className="hover:text-primary hover:scale-110 transition-all duration-300"
+                >
                   About
                 </Link>
               </li>
@@ -50,12 +57,18 @@ const Header: React.FC = () => {
               {user.role === "guest" && (
                 <>
                   <li>
-                    <Link to="/login" className="hover:text-primary hover:scale-110 transition-all duration-300">
+                    <Link
+                      to="/login"
+                      className="hover:text-primary hover:scale-110 transition-all duration-300"
+                    >
                       LogIn
                     </Link>
                   </li>
                   <li>
-                    <Link to="/signUp" className="hover:text-primary hover:scale-110 transition-all duration-300">
+                    <Link
+                      to="/signUp"
+                      className="hover:text-primary hover:scale-110 transition-all duration-300"
+                    >
                       SignUp
                     </Link>
                   </li>
@@ -66,12 +79,18 @@ const Header: React.FC = () => {
               {user.role === "provider" && (
                 <>
                   <li>
-                    <Link to={`/Profile/${user.id}`} className="hover:text-primary hover:scale-110 transition-all duration-300">
+                    <Link
+                      to={`/Profile/${user.id}`}
+                      className="hover:text-primary hover:scale-110 transition-all duration-300"
+                    >
                       Profile
                     </Link>
                   </li>
                   <li>
-                    <Link to="/Yourpost" className="hover:text-primary hover:scale-110 transition-all duration-300">
+                    <Link
+                      to="/Yourpost"
+                      className="hover:text-primary hover:scale-110 transition-all duration-300"
+                    >
                       Your Post
                     </Link>
                   </li>
@@ -82,10 +101,10 @@ const Header: React.FC = () => {
               {user.role !== "guest" && (
                 <li>
                   <button
-
                     className="hover:text-destructive dark:hover:text-red-400 hover:scale-110 transition-all duration-300"
                     onClick={() => {
                       deleteCookie();
+                      navigate("/");
                       dispatch(setUser({ role: "guest" }));
                     }}
                   >
@@ -182,12 +201,18 @@ const Header: React.FC = () => {
           {user.role === "provider" && (
             <>
               <li>
-                <Link to={`/Profile/${user.id}`} className="hover:text-primary transition-all duration-300">
+                <Link
+                  to={`/Profile/${user.id}`}
+                  className="hover:text-primary transition-all duration-300"
+                >
                   Profile
                 </Link>
               </li>
               <li>
-                <Link to="/Yourpost" className="hover:text-primary transition-all duration-300">
+                <Link
+                  to="/Yourpost"
+                  className="hover:text-primary transition-all duration-300"
+                >
                   Your Post
                 </Link>
               </li>
@@ -201,6 +226,7 @@ const Header: React.FC = () => {
                 className="hover:text-destructive transition-all duration-300"
                 onClick={() => {
                   deleteCookie();
+                  navigate("/");
                   dispatch(setUser({ role: "guest" }));
                 }}
               >
