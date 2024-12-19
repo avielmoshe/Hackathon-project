@@ -1,11 +1,13 @@
 import { FaHandHoldingHeart, FaHandshake, FaComments } from "react-icons/fa";
 import { PostType } from "./PostsContainer";
-import { 
+import Nog from "@/pages/Chat";
+import {
   FaHeartbeat, FaBook, FaUtensils, FaTools, FaHandsHelping,
   FaChild, FaUsers, FaRecycle, FaTree, FaWater, FaDog,
   FaSchool, FaTruck, FaRegHospital, FaChalkboardTeacher, FaFirstAid,
   FaLaptopCode, FaMusic, FaPaintBrush, FaGlobe, FaHome, FaSeedling, FaBalanceScale
 } from "react-icons/fa";
+import { Link } from "react-router-dom";
 
 const getIconForService = (service) => {
   const lowerCaseService = service.toLowerCase();
@@ -205,20 +207,26 @@ const Post = ({ post }: PropsTypes) => {
       <div className="mt-6 flex justify-start space-x-4">
         {post.providerType === "ngo" ? (
           <>
-            <button
-              onClick={handleChatClick}
-              className="flex items- space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
-            >
-              <FaComments className="text-lg" />
-              <span>Talk to us</span>
-            </button>
-            <button
-              onClick={handleDonateClick}
-              className="flex items-center space-x-2 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 transition"
-            >
-              <FaHandHoldingHeart className="text-lg" />
-              <span>Donate $</span>
-            </button>
+            <Link to={"Chat"} >
+              <button
+                onClick={handleChatClick}
+                className="flex items- space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+              >
+                <FaComments className="text-lg" />
+                <span>Talk to us</span>
+              </button>
+            </Link>
+            <Link to={"Donation"}>
+              <button
+                onClick={handleDonateClick}
+                className="flex items-center space-x-2 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 transition"
+              >
+                <FaHandHoldingHeart className="text-lg" />
+                <span>Donate $</span>
+              </button>
+            </Link>
+
+            <Link to={"Volunter"}>
             <button
               onClick={handleVolunteerClick}
               className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition"
@@ -226,6 +234,8 @@ const Post = ({ post }: PropsTypes) => {
               <FaHandshake className="text-lg" />
               <span>Volunter</span>
             </button>
+            </Link>
+            
           </>
         ) : (
           <button
