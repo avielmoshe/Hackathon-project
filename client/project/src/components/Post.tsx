@@ -1,3 +1,4 @@
+import { FaHandHoldingHeart, FaHandshake, FaComments } from "react-icons/fa";
 import { PostType } from "./PostsContainer";
 
 interface PropsTypes {
@@ -15,6 +16,18 @@ const Post = ({ post }: PropsTypes) => {
         "_blank"
       );
     }
+  };
+
+  const handleChatClick = () => {
+    alert("Abrindo o chat para contato!");
+  };
+
+  const handleDonateClick = () => {
+    alert("Redirecionando para a página de doação!");
+  };
+
+  const handleVolunteerClick = () => {
+    alert("Redirecionando para a página de voluntariado!");
   };
 
   return (
@@ -57,7 +70,7 @@ const Post = ({ post }: PropsTypes) => {
               strokeLinecap="round"
               strokeLinejoin="round"
               strokeWidth={2}
-              d="M16.88 3.549a6.5 6.5 0 00-9.76 8.218l9.768-8.218zM14.672 16.016a7.512 7.512 0 01-8.445-1.287M21 21l-3.6-3.6M19.73 8.612l-3.195 2.705M13.155 6.846l-2.872 4.2"
+              d="M16.88 3.549a6.5 6.5 0 00-9.76 8.218l9.768-8-218zM14.672 16.016a7.512 7.512 0 01-8.445-1.287M21 21l-3.6-3.6M19.73 8.612l-3.195 2.705M13.155 6.846l-2.872 4.2"
             />
           </svg>
           <span>
@@ -118,10 +131,47 @@ const Post = ({ post }: PropsTypes) => {
         </div>
       )}
 
-      {/* Share Button */}
+      {/* Original Share Button */}
       <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">
         Share Post
       </button>
+
+      {/* Dynamic Buttons */}
+      <div className="mt-6 flex justify-between">
+        {post.providerType === "NGO" ? (
+          <>
+            <button
+              onClick={handleChatClick}
+              className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+            >
+              <FaComments className="text-lg" />
+              <span>Fale Conosco</span>
+            </button>
+            <button
+              onClick={handleDonateClick}
+              className="flex items-center space-x-2 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 transition"
+            >
+              <FaHandHoldingHeart className="text-lg" />
+              <span>Doe $</span>
+            </button>
+            <button
+              onClick={handleVolunteerClick}
+              className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition"
+            >
+              <FaHandshake className="text-lg" />
+              <span>Voluntariar-se</span>
+            </button>
+          </>
+        ) : (
+          <button
+            onClick={handleChatClick}
+            className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+          >
+            <FaComments className="text-lg" />
+            <span>Fale Conosco</span>
+          </button>
+        )}
+      </div>
     </div>
   );
 };
