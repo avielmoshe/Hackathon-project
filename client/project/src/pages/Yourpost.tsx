@@ -1,6 +1,7 @@
 import Categories from "@/components/Categories";
 import MapAccordion from "@/components/MapAccordion";
 import { Button } from "@/components/ui/button";
+import { createPost } from "@/utils/api.service";
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
@@ -237,7 +238,7 @@ export interface Data {
   serviceType: string[];
 }
 
-function Yourpost() {
+function Yourpost({ btnText }) {
   const [isPostExist, setIsPostExist] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [data, setData] = useState<Data>({
@@ -300,63 +301,102 @@ function Yourpost() {
   //   setFormData({ ...formData, location: e.target.value });
   // };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    if (btnText) {
+      const queryString = new URLSearchParams(
+        Object.entries(data).reduce((acc, [key, value]) => {
+          acc[key] = Array.isArray(value) ? value.join(",") : value;
+          return acc;
+        }, {})
+      ).toString();
+      navigate(`/FilterPost?${queryString}`);
+      // Example usage: append query to a URL
+
+      console.log(queryString);
+    } else {
+      const respone = await createPost(data);
+      if (respone.message === "Post successfully created") {
+        navigate("/");
+      }
+    }
   };
 
   return (
-    <div>
-      <form onSubmit={handleSubmit}>
-        <MapAccordion
-          arr={locations}
-          setData={setData}
-          name="location"
-          handleInputChange={handleInputChange}
-          data={data}
-        />
-        <MapAccordion
-          arr={statuses}
-          setData={setData}
-          name="status"
-          handleInputChange={handleInputChange}
-          data={data}
-        />
-        <input
-          name="description"
-          type="text"
-          placeholder="description"
-          // value={formData.email}
-          onChange={(e) => handleInputChange(e, null)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-          required={isPostExist}
-        />
-
-        <input
-          name="title"
-          type="text"
-          placeholder="title"
-          // value={formData.email}
-          // onChange={description}
-          onChange={(e) => handleInputChange(e, null)}
-          className="w-full px-3 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500"
-          required={isPostExist}
-        />
-
-        <Button type="button" onClick={() => setIsOpen(!isOpen)}>
-          categories
-        </Button>
-
-        {isOpen && (
-          <Categories
-            categories={categories}
+    <div className="mt-10 max-w-4xl mx-auto bg-white p-6 rounded-lg shadow-md">
+      <form onSubmit={handleSubmit} className="space-y-6">
+        <div>
+          <MapAccordion
+            arr={locations}
             setData={setData}
-            name="serviceType"
+            name="location"
             handleInputChange={handleInputChange}
             data={data}
           />
+        </div>
+
+        <div>
+          <MapAccordion
+            arr={statuses}
+            setData={setData}
+            name="status"
+            handleInputChange={handleInputChange}
+            data={data}
+          />
+        </div>
+        {btnText || (
+          <div>
+            <input
+              name="description"
+              type="text"
+              placeholder="Description"
+              onChange={(e) => handleInputChange(e, null)}
+              className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-gray-700"
+              required={isPostExist}
+            />
+          </div>
+        )}
+        <div>
+          <input
+            name="title"
+            type="text"
+            placeholder="Title"
+            onChange={(e) => handleInputChange(e, null)}
+            className="w-full px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-blue-500 focus:border-blue-500 placeholder-gray-400 text-gray-700"
+            required={isPostExist}
+          />
+        </div>
+
+        <div>
+          <button
+            type="button"
+            onClick={() => setIsOpen(!isOpen)}
+            className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+          >
+            Categories
+          </button>
+        </div>
+
+        {isOpen && (
+          <div className="mt-4">
+            <Categories
+              categories={categories}
+              setData={setData}
+              name="serviceType"
+              handleInputChange={handleInputChange}
+              data={data}
+            />
+          </div>
         )}
 
-        <Button type="submit"> search</Button>
+        <div>
+          <button
+            type="submit"
+            className="w-full px-4 py-2 bg-green-500 text-white rounded-lg shadow-md hover:bg-green-600 focus:outline-none focus:ring-2 focus:ring-green-300"
+          >
+            {btnText || "Add New Post"}
+          </button>
+        </div>
       </form>
     </div>
   );
