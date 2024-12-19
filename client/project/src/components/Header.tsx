@@ -41,7 +41,7 @@ const Header: React.FC = () => {
                   to="/"
                   className="hover:text-primary hover:scale-110 transition-all duration-300"
                 >
-                  Home Page
+                  Home
                 </Link>
               </li>
               <li>
@@ -163,7 +163,7 @@ const Header: React.FC = () => {
               to="/"
               className="hover:text-primary transition-all duration-300"
             >
-              Home Page
+              Home
             </Link>
           </li>
           <li>
