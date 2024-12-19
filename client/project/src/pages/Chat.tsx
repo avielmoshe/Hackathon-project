@@ -11,7 +11,7 @@ const ChatPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 text-gray-800 dark:text-gray-200 flex flex-col items-center p-6">
+    <div className="min-h-screen bg-gradient-to-br mt-6 from-blue-50 to-blue-100 dark:from-gray-800 dark:to-gray-900 text-gray-800 dark:text-gray-200 flex flex-col items-center p-6">
       {/* Header */}
       <header className="text-center mb-8">
         <h1 className="text-4xl font-extrabold mb-4 text-blue-700 dark:text-blue-300">

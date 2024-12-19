@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   content: ["./index.html", "./src/**/*.{ts,tsx,js,jsx}"],
-  darkMode: ["class", "class"],
+  darkMode: ["class"],
   theme: {
     extend: {
       colors: {
@@ -9,8 +9,8 @@ export default {
         foreground: "hsl(var(--foreground))",
         input: "hsl(var(--input))",
         border: "hsl(var(--border))",
-        primary: "#3b82f6", 
-        destructive: "#ef4444", 
+        primary: "#3b82f6",
+        destructive: "#ef4444",
       },
       keyframes: {
         "accordion-down": {
