@@ -43,7 +43,7 @@ function Profile() {
             backgroundImage: `url(${profileData.bannerImg || DefaultBanner})`,
           }}
         ></div>
-        <div className="flex flex-col items-center px-4 md:px-12 mt-10">
+        <div className="flex flex-col items-center px-4 md:px-12 mt-10 ">
           <div className="flex flex-col md:flex-row w-full max-w-4xl p-5">
             <div className="flex flex-col items-center md:items-start ">
               <div
@@ -96,7 +96,7 @@ function Profile() {
               <p className="mt-4">
                 <b>Bio:</b>
               </p>
-              <div className="bg-gray-50 text-black p-4 rounded-xl max-w-56">
+              <div className=" text-black p-4 rounded-xl max-w-56">
                 {profileData.bio && <p>{profileData.bio}</p>}
               </div>
             </div>
