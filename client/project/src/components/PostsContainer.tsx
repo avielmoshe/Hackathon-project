@@ -1,8 +1,8 @@
 import { getAllPostsApi } from "@/utils/api.service";
 import React, { useEffect, useState } from "react";
-// import Post from "./Post";
+import Post from "./Post.tsx";
 
-export interface Post {
+export interface PostType {
 
   createdAt: string
   description: string

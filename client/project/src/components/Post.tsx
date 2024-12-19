@@ -1,14 +1,14 @@
 // const Post = ({ post }) => {
 //   console.log(post);
 
-import { Post } from "./PostsContainer";
+import { PostType } from "./PostsContainer";
 
 //   return <div>{post.title}</div>;
 // };
 // export default Post;
 
 interface PropsTypes {
-  post: Post
+  post: PostType
 }
 
 const Post = ({ post }: PropsTypes) => {
