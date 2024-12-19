@@ -31,13 +31,13 @@ function Categories({
 }: PropsType) {
   return (
     <div>
-      {categories.map((category, i) => {
+      {categories.map((category) => {
         return (
-          <Accordion key={category[i]} type="single" collapsible>
+          <Accordion key={category.category} type="single" collapsible>
             <AccordionItem key={category.category} value="item-1">
               <AccordionTrigger>{category.category}</AccordionTrigger>
               {
-                <AccordionContent>
+                <AccordionContent className="">
                   {category.subcategories.map((sub) => {
                     return (
                       <div key={sub}>
