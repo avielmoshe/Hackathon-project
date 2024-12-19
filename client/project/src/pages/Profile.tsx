@@ -4,11 +4,13 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import DefaultBanner from "../assets/images/banner-background.jpg";
 import DefaultProfile from "../assets/images/profile-background.jpg";
+import { useSelector } from "react-redux";
 
 function Profile() {
   const [profileData, setProfileData] = useState("");
   const params = useParams();
   const navigate = useNavigate();
+  const user = useSelector((state: RootState) => state.user.user);
 
   const [isLoaded, setIsLoaded] = useState(false);
 
@@ -50,7 +52,7 @@ function Profile() {
                 className="rounded-full  w-36 h-36 bg-cover bg-center"
                 style={{
                   backgroundImage: `url(${
-                    profileData.userID?.profileImg || DefaultProfile
+                    profileData.userID.profileImg || DefaultProfile
                   })`,
                 }}
               ></div>
@@ -60,12 +62,16 @@ function Profile() {
                 {profileData.userID?.username &&
                   profileData.userID?.username.charAt(0).toUpperCase() +
                     profileData.userID?.username.slice(1).toLowerCase()}
-                <button
-                  className="bg-blue-50 text-2xl py-2 px-4 ml-5 rounded-full cursor-pointer hover:bg-blue-100 text-blue-800 shadow-md "
-                  onClick={() => navigate("/EditProfile")}
-                >
-                  Edit
-                </button>
+                <>
+                  {user.id === profileData.userID._id && (
+                    <button
+                      className="bg-blue-50 text-2xl py-2 px-4 ml-5 rounded-full cursor-pointer hover:bg-blue-100 text-blue-800 shadow-md"
+                      onClick={() => navigate("/EditProfile")}
+                    >
+                      Edit Profile
+                    </button>
+                  )}
+                </>
               </h1>
               <p>
                 <b>Location: </b> {profileData.location}

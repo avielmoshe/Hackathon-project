@@ -1,12 +1,15 @@
 import { useSelector } from "react-redux";
 import { RootState } from "../store";
 import PostsContainer from "@/components/PostsContainer";
+import Yourpost from "./Yourpost";
 
 function HomePage() {
   const user = useSelector((state: RootState) => state.user.user);
 
   return (
     <div>
+      <div className="">Filter</div>
+      <Yourpost btnText={"Filter"} />
       <PostsContainer />
     </div>
   );

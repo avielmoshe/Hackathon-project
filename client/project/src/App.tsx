@@ -13,6 +13,7 @@ import { setUser } from "./store/slices/userSlice.ts";
 import { useAppDispatch } from "./store/index.ts";
 import EditProfile from "./components/EditProfile.tsx";
 import Yourpost from "./pages/Yourpost.tsx";
+import FilterPost from "./pages/FilterPost.tsx";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -53,6 +54,10 @@ function App() {
         {
           path: "/yourpost",
           element: <Yourpost />,
+        },
+        {
+          path: "/FilterPost/",
+          element: <FilterPost />,
         },
         {
           path: "*",
