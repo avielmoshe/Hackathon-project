@@ -371,7 +371,7 @@ function Yourpost({ btnText }) {
           <button
             type="button"
             onClick={() => setIsOpen(!isOpen)}
-            className="w-full px-4 py-2 bg-blue-500 text-white rounded-lg shadow-md hover:bg-blue-600 focus:outline-none focus:ring-2 focus:ring-blue-300"
+            className="w-full px-4 py-2 bg-background text-foreground  shadow-md focus:outline-none focus:ring-2 focus:ring-blue-300"
           >
             Categories
           </button>
