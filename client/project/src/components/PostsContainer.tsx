@@ -2,6 +2,7 @@ import { getAllPostsApi } from "@/utils/api.service";
 import React, { useEffect, useState } from "react";
 
 import Post from "./Post.tsx";
+import { Link } from "react-router-dom";
 
 export interface PostType {
   profileImg?: string;
@@ -32,7 +33,13 @@ const PostsContainer: React.FC = () => {
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
       {posts.map((post) => (
-        <Post key={post._id} post={post} />
+        <Link
+          key={post._id}
+          to={`/Profile/${post.userID._id}`}
+          className="hover:text-primary hover:scale-110 transition-all duration-300"
+        >
+          <Post post={post} />
+        </Link>
       ))}
     </div>
   );
