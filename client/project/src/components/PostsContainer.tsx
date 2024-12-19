@@ -1,6 +1,23 @@
 import { getAllPostsApi } from "@/utils/api.service";
 import React, { useEffect, useState } from "react";
-import Post from "./Post";
+// import Post from "./Post";
+
+export interface Post {
+
+  createdAt: string
+  description: string
+  location: string[]
+  providerID: { _id: string, providerType: string }
+  providerType: string
+  serviceType: string[]
+  status: string[]
+  title: string
+  userID: { _id: string, username: string, phone: number, email: string }
+  __v: number
+  _id: string
+}
+
+
 
 const PostsContainer: React.FC = () => {
   const [posts, setPosts] = useState<Post[]>([]);
@@ -10,11 +27,11 @@ const PostsContainer: React.FC = () => {
         const response = await getAllPostsApi();
         setPosts(response.posts);
       })();
-    } catch (error) {}
+    } catch (error) { }
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6 overflow-y-auto">
       {posts.map((post) => (
         <Post key={post._id} post={post} />
       ))}
