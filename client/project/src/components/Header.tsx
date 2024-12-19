@@ -118,7 +118,7 @@ const Header: React.FC = () => {
               <img
                 src={user.profileImg}
                 alt={user.firstName || "User"}
-                className="w-10 h-10 rounded-full object-cover hover:scale-110 transition duration-200"
+                className="w-12 h-12 rounded-full object-cover hover:scale-110 transition duration-200"
               />
             ) : (
               <img
