@@ -1,5 +1,46 @@
 import { FaHandHoldingHeart, FaHandshake, FaComments } from "react-icons/fa";
 import { PostType } from "./PostsContainer";
+import { 
+  FaHeartbeat, FaBook, FaUtensils, FaTools, FaHandsHelping,
+  FaChild, FaUsers, FaRecycle, FaTree, FaWater, FaDog,
+  FaSchool, FaTruck, FaRegHospital, FaChalkboardTeacher, FaFirstAid,
+  FaLaptopCode, FaMusic, FaPaintBrush, FaGlobe, FaHome, FaSeedling, FaBalanceScale
+} from "react-icons/fa";
+
+const getIconForService = (service) => {
+  const lowerCaseService = service.toLowerCase();
+
+  if (lowerCaseService.includes("health")) return <FaHeartbeat className="text-blue-500" />;
+  if (lowerCaseService.includes("education")) return <FaBook className="text-blue-500" />;
+  if (lowerCaseService.includes("food")) return <FaUtensils className="text-blue-500" />;
+  if (lowerCaseService.includes("charity")) return <FaHandHoldingHeart className="text-blue-500" />;
+  if (lowerCaseService.includes("help")) return <FaHandsHelping className="text-blue-500" />;
+  if (lowerCaseService.includes("child")) return <FaChild className="text-blue-500" />;
+  if (lowerCaseService.includes("community")) return <FaUsers className="text-blue-500" />;
+  if (lowerCaseService.includes("recycle")) return <FaRecycle className="text-blue-500" />;
+  if (lowerCaseService.includes("environment") || lowerCaseService.includes("gardening"))
+    return <FaSeedling className="text-green-500" />;
+  if (lowerCaseService.includes("water")) return <FaWater className="text-blue-500" />;
+  if (lowerCaseService.includes("animal")) return <FaDog className="text-yellow-500" />;
+  if (lowerCaseService.includes("volunteer")) return <FaHandshake className="text-blue-500" />;
+  if (lowerCaseService.includes("school")) return <FaSchool className="text-blue-500" />;
+  if (lowerCaseService.includes("transport")) return <FaTruck className="text-blue-500" />;
+  if (lowerCaseService.includes("medical")) return <FaRegHospital className="text-blue-500" />;
+  if (lowerCaseService.includes("teaching")) return <FaChalkboardTeacher className="text-blue-500" />;
+  if (lowerCaseService.includes("first aid")) return <FaFirstAid className="text-red-500" />;
+  if (lowerCaseService.includes("tech")) return <FaLaptopCode className="text-blue-500" />;
+  if (lowerCaseService.includes("art")) return <FaPaintBrush className="text-blue-500" />;
+  if (lowerCaseService.includes("music")) return <FaMusic className="text-purple-500" />;
+  if (lowerCaseService.includes("global")) return <FaGlobe className="text-blue-500" />;
+  if (lowerCaseService.includes("home")) return <FaHome className="text-yellow-500" />;
+  if (lowerCaseService.includes("plant")) return <FaTree className="text-green-500" />;
+  if (lowerCaseService.includes("law")) return <FaBalanceScale className="text-blue-500" />;
+
+  // Ícone padrão para serviços não identificados
+  return <FaTools className="text-blue-500" />;
+};
+
+
 
 interface PropsTypes {
   post: PostType;
@@ -19,11 +60,11 @@ const Post = ({ post }: PropsTypes) => {
   };
 
   const handleChatClick = () => {
-    alert("Abrindo o chat para contato!");
+    alert("Opening chat for contact!");
   };
 
   const handleDonateClick = () => {
-    alert("Redirecionando para a página de doação!");
+    alert("Redirecting to donation page!");
   };
 
   const handleVolunteerClick = () => {
@@ -52,6 +93,21 @@ const Post = ({ post }: PropsTypes) => {
       <p className="text-gray-700 dark:text-gray-300 mb-6 text-justify leading-relaxed">
         {post.description}
       </p>
+      {/* Services */}
+      {post.serviceType && (
+        <div className="flex flex-wrap gap-2 mb-4">
+          {post.serviceType.map((service, index) => (
+            <span
+              key={index}
+              className="flex items-center text-sm px-3 py-1 bg-blue-100 text-blue-700 dark:bg-gray-700 dark:text-gray-300 rounded-full shadow-sm hover:bg-blue-200 dark:hover:bg-gray-600 transition-colors"
+            >
+              {getIconForService(service)} {/* Ícone baseado na palavra-chave */}
+              <span className="ml-2">{service}</span>
+            </span>
+          ))}
+        </div>
+      )}
+
 
       {/* Location */}
       {post.location && (
@@ -79,19 +135,6 @@ const Post = ({ post }: PropsTypes) => {
         </div>
       )}
 
-      {/* Services */}
-      {post.serviceType && (
-        <div className="flex flex-wrap gap-2 mb-4">
-          {post.serviceType.map((service, index) => (
-            <span
-              key={index}
-              className="text-sm px-3 py-1 bg-blue-100 text-blue-700 dark:bg-gray-700 dark:text-gray-300 rounded-full shadow-sm hover:bg-blue-200 dark:hover:bg-gray-600 transition-colors"
-            >
-              {service}
-            </span>
-          ))}
-        </div>
-      )}
 
       {/* Status */}
       {post.status && (
@@ -131,35 +174,57 @@ const Post = ({ post }: PropsTypes) => {
         </div>
       )}
 
-      {/* Original Share Button */}
-      <button className="mt-4 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition">
-        Share Post
-      </button>
+      {/* Share Button */}
+      <div className="mt-4 flex justify-start">
+        <button
+          onClick={(e) => {
+            e.preventDefault(); // Impede o comportamento padrão de envio
+            const postLink = `https://yourwebsite.com/posts/${post.id}`; // Substitua pelo formato real do link
+            navigator.clipboard.writeText(postLink) // Copia o link para a área de transferência
+              .then(() => {
+                const shareButton = document.getElementById("shareButton");
+                shareButton.textContent = "😁Link copiado✅"; // Atualiza o texto do botão
+                setTimeout(() => {
+                  shareButton.textContent = "Share ☺️"; // Volta ao texto original após 2 segundos
+                }, 2000);
+              })
+              .catch((err) => {
+                console.error("Erro ao copiar o link: ", err);
+                alert("Não foi possível copiar o link. Tente novamente.");
+              });
+          }}
+          id="shareButton"
+          className="bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+        >
+          Share ☺️
+        </button>
+      </div>
+
 
       {/* Dynamic Buttons */}
-      <div className="mt-6 flex justify-between">
-        {post.providerType === "NGO" ? (
+      <div className="mt-6 flex justify-start space-x-4">
+        {post.providerType === "ngo" ? (
           <>
             <button
               onClick={handleChatClick}
-              className="flex items-center space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
+              className="flex items- space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
             >
               <FaComments className="text-lg" />
-              <span>Fale Conosco</span>
+              <span>Talk to us</span>
             </button>
             <button
               onClick={handleDonateClick}
               className="flex items-center space-x-2 bg-yellow-500 text-white px-4 py-2 rounded-lg shadow hover:bg-yellow-600 transition"
             >
               <FaHandHoldingHeart className="text-lg" />
-              <span>Doe $</span>
+              <span>Donate $</span>
             </button>
             <button
               onClick={handleVolunteerClick}
               className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition"
             >
               <FaHandshake className="text-lg" />
-              <span>Voluntariar-se</span>
+              <span>Volunter</span>
             </button>
           </>
         ) : (
