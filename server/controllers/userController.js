@@ -5,8 +5,6 @@ const JWT_EXPIRATION = { expiresIn: "1h" };
 
 export const TokenValid = async (req, res) => {
   try {
-    console.log(req.user);
-
     res.status(200).send({
       id: req.user.id,
       firstName: req.user.firstName,
