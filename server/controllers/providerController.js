@@ -58,7 +58,8 @@ export const getProviderByUserId = async (req, res) => {
 
 export const updateProvider = async (req, res) => {
   try {
-    const { providerType, bannerImg, bio, location, webLink } = req.body;
+    const { providerType, bannerImg, bio, location, webLink, profileImg } =
+      req.body;
     const userId = req.user.id;
     const updateData = {};
     if (providerType) updateData.providerType = providerType;
@@ -66,6 +67,11 @@ export const updateProvider = async (req, res) => {
     if (bio) updateData.bio = bio;
     if (location) updateData.location = location;
     if (webLink) updateData.webLink = webLink;
+    if (profileImg) {
+      await User.findByIdAndUpdate(userId, profileImg, {
+        new: true,
+      });
+    }
 
     const oldProvider = await Provider.findOne({ userID: userId });
 

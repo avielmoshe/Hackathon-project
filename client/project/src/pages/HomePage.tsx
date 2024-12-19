@@ -4,12 +4,9 @@ import PostsContainer from "@/components/PostsContainer";
 
 function HomePage() {
   const user = useSelector((state: RootState) => state.user.user);
-  console.log(user.id);
 
   return (
     <div>
-      <div>{JSON.stringify(user.username)}</div>
-      <div>{user.role}</div>
       <PostsContainer />
     </div>
   );

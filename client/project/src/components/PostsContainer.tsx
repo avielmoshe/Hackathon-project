@@ -1,5 +1,6 @@
 import { getAllPostsApi } from "@/utils/api.service";
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react"
+
 import Post from "./Post.tsx";
 
 export interface PostType {
@@ -27,11 +28,11 @@ const PostsContainer: React.FC = () => {
         const response = await getAllPostsApi();
         setPosts(response.posts);
       })();
-    } catch (error) { }
+    } catch (error) {}
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6 overflow-y-auto">
+    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
       {posts.map((post) => (
         <Post key={post._id} post={post} />
       ))}
@@ -40,4 +41,3 @@ const PostsContainer: React.FC = () => {
 };
 
 export default PostsContainer;
-
