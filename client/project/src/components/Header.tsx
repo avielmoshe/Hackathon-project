@@ -13,8 +13,7 @@ const Header: React.FC = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
-  const [isSidebarOpen, setIsSidebarOpen] = useState(false); // Controla a Sidebar
-
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
