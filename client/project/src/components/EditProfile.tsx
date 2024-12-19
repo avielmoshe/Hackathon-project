@@ -15,6 +15,10 @@ const regions = [
 ];
 
 function EditProfile() {
+  //  רק אם הid שמגיע מהקריאת api שווה לid של הסטייט הגלובלי - להציג את הedit
+
+
+
   const [formData, setFormData] = useState({
     bio: "",
     webLink: "",
