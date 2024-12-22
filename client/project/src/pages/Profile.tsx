@@ -87,9 +87,11 @@ function Profile() {
               <p className="text-lg text-gray-700 mt-2">
                 <b>Contact us:</b>
               </p>
-              <div className="bg-gray-100 rounded-xl max-w-full p-4 mt-2">
-                <p className="text-gray-800">
-                  <b>Email:</b> {profileData.userID?.email}
+
+              <div className="rounded-xl max-w-60 p-4">
+                <p>
+                  <b>Email: </b> {profileData.userID?.email}
+
                 </p>
                 <p className="text-gray-800">
                   <b>Mobile number:</b> {profileData.userID?.phone}
@@ -112,7 +114,9 @@ function Profile() {
               <p className="mt-4 text-lg text-gray-700">
                 <b>Bio:</b>
               </p>
-              <div className="bg-gray-100 text-black p-4 rounded-xl max-w-full mt-2 h-40 overflow-auto">
+
+              <div className="p-4 rounded-xl max-w-screen-lg">
+
                 {profileData.bio && <p>{profileData.bio}</p>}
               </div>
             </div>

@@ -60,10 +60,10 @@ const SignUp = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100">
-      <div className="w-full max-w-md bg-white shadow-lg rounded-lg p-8">
+    <div className="min-h-screen flex items-center justify-center bg-blue-400">
+      <div className="w-full h-auto max-w-md bg-orange-100 shadow-lg rounded-lg p-8 m-1">
         <div className="text-center mb-6">
-          <h1 className="text-black-600 mt-4">
+          <h1 className="text-black mt-4">
             Sign up so you can easily help improve our community.
           </h1>
         </div>
@@ -204,7 +204,6 @@ const SignUp = () => {
             </span>
           </p>
         </div>
-        <p className="text-center text-sm text-gray-600 mt-4">Get the app.</p>
       </div>
     </div>
   );
