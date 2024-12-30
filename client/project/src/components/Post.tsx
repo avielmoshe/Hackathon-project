@@ -1,48 +1,90 @@
 import { FaHandHoldingHeart, FaHandshake, FaComments } from "react-icons/fa";
 import { PostType } from "./PostsContainer";
-import Nog from "@/pages/Chat";
 import {
-  FaHeartbeat, FaBook, FaUtensils, FaTools, FaHandsHelping,
-  FaChild, FaUsers, FaRecycle, FaTree, FaWater, FaDog,
-  FaSchool, FaTruck, FaRegHospital, FaChalkboardTeacher, FaFirstAid,
-  FaLaptopCode, FaMusic, FaPaintBrush, FaGlobe, FaHome, FaSeedling, FaBalanceScale
+  FaHeartbeat,
+  FaBook,
+  FaUtensils,
+  FaTools,
+  FaHandsHelping,
+  FaChild,
+  FaUsers,
+  FaRecycle,
+  FaTree,
+  FaWater,
+  FaDog,
+  FaSchool,
+  FaTruck,
+  FaRegHospital,
+  FaChalkboardTeacher,
+  FaFirstAid,
+  FaLaptopCode,
+  FaMusic,
+  FaPaintBrush,
+  FaGlobe,
+  FaHome,
+  FaSeedling,
+  FaBalanceScale,
 } from "react-icons/fa";
 import { Link } from "react-router-dom";
 
-const getIconForService = (service) => {
+const getIconForService = (service: any) => {
   const lowerCaseService = service.toLowerCase();
 
-  if (lowerCaseService.includes("health")) return <FaHeartbeat className="text-blue-500" />;
-  if (lowerCaseService.includes("education")) return <FaBook className="text-blue-500" />;
-  if (lowerCaseService.includes("food")) return <FaUtensils className="text-blue-500" />;
-  if (lowerCaseService.includes("charity")) return <FaHandHoldingHeart className="text-blue-500" />;
-  if (lowerCaseService.includes("help")) return <FaHandsHelping className="text-blue-500" />;
-  if (lowerCaseService.includes("child")) return <FaChild className="text-blue-500" />;
-  if (lowerCaseService.includes("community")) return <FaUsers className="text-blue-500" />;
-  if (lowerCaseService.includes("recycle")) return <FaRecycle className="text-blue-500" />;
-  if (lowerCaseService.includes("environment") || lowerCaseService.includes("gardening"))
+  if (lowerCaseService.includes("health"))
+    return <FaHeartbeat className="text-blue-500" />;
+  if (lowerCaseService.includes("education"))
+    return <FaBook className="text-blue-500" />;
+  if (lowerCaseService.includes("food"))
+    return <FaUtensils className="text-blue-500" />;
+  if (lowerCaseService.includes("charity"))
+    return <FaHandHoldingHeart className="text-blue-500" />;
+  if (lowerCaseService.includes("help"))
+    return <FaHandsHelping className="text-blue-500" />;
+  if (lowerCaseService.includes("child"))
+    return <FaChild className="text-blue-500" />;
+  if (lowerCaseService.includes("community"))
+    return <FaUsers className="text-blue-500" />;
+  if (lowerCaseService.includes("recycle"))
+    return <FaRecycle className="text-blue-500" />;
+  if (
+    lowerCaseService.includes("environment") ||
+    lowerCaseService.includes("gardening")
+  )
     return <FaSeedling className="text-green-500" />;
-  if (lowerCaseService.includes("water")) return <FaWater className="text-blue-500" />;
-  if (lowerCaseService.includes("animal")) return <FaDog className="text-yellow-500" />;
-  if (lowerCaseService.includes("volunteer")) return <FaHandshake className="text-blue-500" />;
-  if (lowerCaseService.includes("school")) return <FaSchool className="text-blue-500" />;
-  if (lowerCaseService.includes("transport")) return <FaTruck className="text-blue-500" />;
-  if (lowerCaseService.includes("medical")) return <FaRegHospital className="text-blue-500" />;
-  if (lowerCaseService.includes("teaching")) return <FaChalkboardTeacher className="text-blue-500" />;
-  if (lowerCaseService.includes("first aid")) return <FaFirstAid className="text-red-500" />;
-  if (lowerCaseService.includes("tech")) return <FaLaptopCode className="text-blue-500" />;
-  if (lowerCaseService.includes("art")) return <FaPaintBrush className="text-blue-500" />;
-  if (lowerCaseService.includes("music")) return <FaMusic className="text-purple-500" />;
-  if (lowerCaseService.includes("global")) return <FaGlobe className="text-blue-500" />;
-  if (lowerCaseService.includes("home")) return <FaHome className="text-yellow-500" />;
-  if (lowerCaseService.includes("plant")) return <FaTree className="text-green-500" />;
-  if (lowerCaseService.includes("law")) return <FaBalanceScale className="text-blue-500" />;
+  if (lowerCaseService.includes("water"))
+    return <FaWater className="text-blue-500" />;
+  if (lowerCaseService.includes("animal"))
+    return <FaDog className="text-yellow-500" />;
+  if (lowerCaseService.includes("volunteer"))
+    return <FaHandshake className="text-blue-500" />;
+  if (lowerCaseService.includes("school"))
+    return <FaSchool className="text-blue-500" />;
+  if (lowerCaseService.includes("transport"))
+    return <FaTruck className="text-blue-500" />;
+  if (lowerCaseService.includes("medical"))
+    return <FaRegHospital className="text-blue-500" />;
+  if (lowerCaseService.includes("teaching"))
+    return <FaChalkboardTeacher className="text-blue-500" />;
+  if (lowerCaseService.includes("first aid"))
+    return <FaFirstAid className="text-red-500" />;
+  if (lowerCaseService.includes("tech"))
+    return <FaLaptopCode className="text-blue-500" />;
+  if (lowerCaseService.includes("art"))
+    return <FaPaintBrush className="text-blue-500" />;
+  if (lowerCaseService.includes("music"))
+    return <FaMusic className="text-purple-500" />;
+  if (lowerCaseService.includes("global"))
+    return <FaGlobe className="text-blue-500" />;
+  if (lowerCaseService.includes("home"))
+    return <FaHome className="text-yellow-500" />;
+  if (lowerCaseService.includes("plant"))
+    return <FaTree className="text-green-500" />;
+  if (lowerCaseService.includes("law"))
+    return <FaBalanceScale className="text-blue-500" />;
 
   // Ícone padrão para serviços não identificados
   return <FaTools className="text-blue-500" />;
 };
-
-
 
 interface PropsTypes {
   post: PostType;
@@ -103,13 +145,13 @@ const Post = ({ post }: PropsTypes) => {
               key={index}
               className="flex items-center text-sm px-3 py-1 bg-blue-100 text-blue-700 dark:bg-gray-700 dark:text-gray-300 rounded-full shadow-sm hover:bg-blue-200 dark:hover:bg-gray-600 transition-colors"
             >
-              {getIconForService(service)} {/* Ícone baseado na palavra-chave */}
+              {getIconForService(service)}{" "}
+              {/* Ícone baseado na palavra-chave */}
               <span className="ml-2">{service}</span>
             </span>
           ))}
         </div>
       )}
-
 
       {/* Location */}
       {post.location && (
@@ -136,7 +178,6 @@ const Post = ({ post }: PropsTypes) => {
           </span>
         </div>
       )}
-
 
       {/* Status */}
       {post.status && (
@@ -181,13 +222,14 @@ const Post = ({ post }: PropsTypes) => {
         <button
           onClick={(e) => {
             e.preventDefault(); // Impede o comportamento padrão de envio
-            const postLink = `https://yourwebsite.com/posts/${post.id}`; // Substitua pelo formato real do link
-            navigator.clipboard.writeText(postLink) // Copia o link para a área de transferência
+            const postLink = `https://yourwebsite.com/posts/${post._id}`; // Substitua pelo formato real do link
+            navigator.clipboard
+              .writeText(postLink) // Copia o link para a área de transferência
               .then(() => {
-                const shareButton = document.getElementById("shareButton");
-                shareButton.textContent = "😁Link copiado✅"; // Atualiza o texto do botão
+                // const shareButton = document.getElementById("shareButton");
+                e.currentTarget.textContent = "😁Link copied!✅"; // Atualiza o texto do botão
                 setTimeout(() => {
-                  shareButton.textContent = "Share ☺️"; // Volta ao texto original após 2 segundos
+                  e.currentTarget.textContent = "Share ☺️"; // Volta ao texto original após 2 segundos
                 }, 2000);
               })
               .catch((err) => {
@@ -202,12 +244,11 @@ const Post = ({ post }: PropsTypes) => {
         </button>
       </div>
 
-
       {/* Dynamic Buttons */}
       <div className="mt-6 flex justify-start space-x-4">
         {post.providerType === "ngo" ? (
           <>
-            <Link to={"Chat"} >
+            <Link to={"Chat"}>
               <button
                 onClick={handleChatClick}
                 className="flex items- space-x-2 bg-blue-500 text-white px-4 py-2 rounded-lg shadow hover:bg-blue-600 transition"
@@ -227,15 +268,14 @@ const Post = ({ post }: PropsTypes) => {
             </Link>
 
             <Link to={"Volunter"}>
-            <button
-              onClick={handleVolunteerClick}
-              className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition"
-            >
-              <FaHandshake className="text-lg" />
-              <span>Volunter</span>
-            </button>
+              <button
+                onClick={handleVolunteerClick}
+                className="flex items-center space-x-2 bg-green-500 text-white px-4 py-2 rounded-lg shadow hover:bg-green-600 transition"
+              >
+                <FaHandshake className="text-lg" />
+                <span>Volunter</span>
+              </button>
             </Link>
-            
           </>
         ) : (
           <button

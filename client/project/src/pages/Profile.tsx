@@ -5,9 +5,10 @@ import { useNavigate, useParams } from "react-router-dom";
 import DefaultBanner from "../assets/images/banner-background.jpg";
 import DefaultProfile from "../assets/images/profile-background.jpg";
 import { useSelector } from "react-redux";
+import { RootState } from "@/store";
 
 function Profile() {
-  const [profileData, setProfileData] = useState("");
+  const [profileData, setProfileData] = useState<any>("");
   const params = useParams();
   const navigate = useNavigate();
   const user = useSelector((state: RootState) => state.user.user);
@@ -18,7 +19,7 @@ function Profile() {
     (async () => {
       const providerData = await getProviderByUserId(params.id);
       setProfileData(providerData);
-      console.log(providerData);
+      // console.log(providerData);
 
       if (providerData.dontHaveData) {
         navigate("/EditProfile");
@@ -91,7 +92,6 @@ function Profile() {
               <div className="rounded-xl max-w-60 p-4">
                 <p>
                   <b>Email: </b> {profileData.userID?.email}
-
                 </p>
                 <p className="text-gray-800">
                   <b>Mobile number:</b> {profileData.userID?.phone}
@@ -116,7 +116,6 @@ function Profile() {
               </p>
 
               <div className="p-4 rounded-xl max-w-screen-lg">
-
                 {profileData.bio && <p>{profileData.bio}</p>}
               </div>
             </div>

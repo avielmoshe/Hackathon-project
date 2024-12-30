@@ -98,7 +98,7 @@ export const crateNewProvider = async (providerData: providerData) => {
   }
 };
 
-export const getProviderByUserId = async (userId: string) => {
+export const getProviderByUserId = async (userId: string | undefined) => {
   try {
     const response = await axios.get(
       `${base_url}/api/provider/getProviderByUserId/${userId}`

@@ -25,10 +25,10 @@ interface PropsType {
 function Categories({
   categories,
   name,
-  setData,
+  // setData,
   handleInputChange,
-  data,
-}: PropsType) {
+}: // data,
+PropsType) {
   return (
     <div>
       {categories.map((category) => {

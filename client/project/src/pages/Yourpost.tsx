@@ -2,7 +2,7 @@ import Categories from "@/components/Categories";
 import MapAccordion from "@/components/MapAccordion";
 import { createPost } from "@/utils/api.service";
 import { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const locations = [
   "North",
@@ -238,7 +238,7 @@ export interface Data {
 }
 
 function Yourpost({ btnText }: { btnText: string | undefined }) {
-  const [isPostExist, setIsPostExist] = useState<boolean>(false);
+  const [isPostExist] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [data, setData] = useState<Data>({
     description: "",
@@ -248,16 +248,16 @@ function Yourpost({ btnText }: { btnText: string | undefined }) {
   });
 
   const navigate = useNavigate();
-  const params = useParams();
+  // const params = useParams();
   const handleInputChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    arrayName: "location" | "serviceType" | null
+    arrayName: "location" | "serviceType" | "status" | null
   ) => {
     const { name, value, type, checked } = event.target;
 
     setData((prev) => {
       // אם prev[arrayName] הוא לא מערך, אתחיל אותו כ[].
-      if (arrayName) {
+      if (arrayName && arrayName !== "status") {
         const currentArray = Array.isArray(prev[arrayName])
           ? prev[arrayName]
           : [];
@@ -328,20 +328,20 @@ function Yourpost({ btnText }: { btnText: string | undefined }) {
         <div className="dark:text-black">
           <MapAccordion
             arr={locations}
-            setData={setData}
+            // setData={setData}
             name="location"
             handleInputChange={handleInputChange}
-            data={data}
+            // data={data}
           />
         </div>
 
         <div className="dark:text-black">
           <MapAccordion
             arr={statuses}
-            setData={setData}
+            // setData={setData}
             name="status"
             handleInputChange={handleInputChange}
-            data={data}
+            // data={data}
           />
         </div>
         {btnText === undefined && (

@@ -14,7 +14,13 @@ export interface PostType {
   serviceType: string[];
   status: string[];
   title: string;
-  userID: { _id: string; username: string; phone: number; email: string };
+  userID: {
+    _id: string;
+    username: string;
+    phone: number;
+    email: string;
+    profileImg: string;
+  };
   __v: number;
   _id: string;
 }

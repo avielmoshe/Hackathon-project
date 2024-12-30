@@ -1,4 +1,3 @@
-import React from "react";
 import { FaHandsHelping } from "react-icons/fa";
 
 const VolunteerSection = () => {

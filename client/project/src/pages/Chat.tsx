@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import { useState } from "react";
 
 const ChatPage = () => {
-  const [messages, setMessages] = useState([]); // Lista de mensagens
+  const [messages, setMessages] = useState<
+    { text: string; sender: string }[] | []
+  >([]); // Lista de mensagens
   const [inputMessage, setInputMessage] = useState(""); // Mensagem do input
 
   const handleSendMessage = () => {

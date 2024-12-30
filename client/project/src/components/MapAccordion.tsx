@@ -4,28 +4,28 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { Data } from "@/pages/Yourpost";
-import { useState } from "react";
+// import { Data } from "@/pages/Yourpost";
+// import { useState } from "react";
 
 interface PropsType {
   arr: string[];
-  name: "location" | "serviceType" | "status";
-  setData: any;
+  name: "location" | "serviceType" | "status" | null;
+  // setData: any;
   handleInputChange: (
     e: React.ChangeEvent<HTMLInputElement>,
-    arrayName: "location" | "serviceType"
+    arrayName: "location" | "serviceType" | "status" | null
   ) => void;
-  data: Data;
+  // data: Data;
 }
 
 function MapAccordion({
   arr,
   name,
-  setData,
+  // setData,
   handleInputChange,
-  data,
-}: PropsType) {
-  const [selectedItems, setSelectedItems] = useState<string[]>([]);
+}: // data,
+PropsType) {
+  // const [selectedItems, setSelectedItems] = useState<string[]>([]);
 
   //   // פונקציה לעדכון מצב הבחירה של ה-checkbox
   //   const handleCheckboxChange = (event: React.ChangeEvent<HTMLInputElement>) => {

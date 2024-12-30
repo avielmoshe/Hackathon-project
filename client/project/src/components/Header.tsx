@@ -1,12 +1,11 @@
 import React, { useState } from "react";
-import { FaSearch, FaBars } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import DarkMode from "./DarkMode";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "@/store";
 import { deleteCookie } from "@/utils/api.service";
 import { setUser } from "@/store/slices/userSlice";
-import { url } from "inspector";
 
 const Header: React.FC = () => {
   const user = useSelector((state: RootState) => state.user.user);
@@ -14,17 +13,14 @@ const Header: React.FC = () => {
   const navigate = useNavigate();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
+  // const toggleSidebar = () => {
+  //   setIsSidebarOpen(!isSidebarOpen);
+  // };
 
   return (
     <>
       {/* Header */}
-      <header
-        className="fixed top-0 z-50 w-full shadow-md transition-all duration-300 bg-blue-200 dark:bg-gray-700"
-
-      >
+      <header className="fixed top-0 z-50 w-full shadow-md transition-all duration-300 bg-blue-200 dark:bg-gray-700">
         <div className="container mx-auto flex items-center justify-between p-4">
           {/* Menu Hamburguer para Mobile */}
           <div
@@ -32,18 +28,14 @@ const Header: React.FC = () => {
             onMouseEnter={() => setIsSidebarOpen(true)}
             onMouseLeave={() => setIsSidebarOpen(false)}
           >
-            <button
-              className="p-2 rounded-full"
-            >
+            <button className="p-2 rounded-full">
               <FaBars
                 className="w-8 h-8"
-              // style={{ color: user.isDarkMode ? "#ecc94b" : "#2b6cb0" }}
+                // style={{ color: user.isDarkMode ? "#ecc94b" : "#2b6cb0" }}
               />
             </button>
             {isSidebarOpen && (
-              <div
-                className="absolute left-0 top-12 bg-gray-800 text-white p-4 rounded-lg shadow-lg"
-              >
+              <div className="absolute left-0 top-12 bg-gray-800 text-white p-4 rounded-lg shadow-lg">
                 <ul className="space-y-4">
                   <li>
                     <Link
@@ -127,10 +119,10 @@ const Header: React.FC = () => {
                 <Link
                   to="/"
                   className="inline-block hover:scale-200 transform transition-transform duration-500 ease-in-out"
-                  style={{
-                    color: user.isDarkMode ? "black" : "#white",
-                    hover: { color: "#ed8936" },
-                  }}
+                  // style={{
+                  //   color: user.isDarkMode ? "black" : "#white",
+                  //   hover: { color: "#ed8936" },
+                  // }}
                 >
                   Home
                 </Link>
