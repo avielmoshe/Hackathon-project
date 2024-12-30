@@ -1,7 +1,8 @@
 import axios from "axios";
 import Cookies from "js-cookie";
 
-const base_url = `http://localhost:3000`;
+const base_url =
+  process.env.NODE_ENV === "production" ? "/" : `http://localhost:3000`;
 interface user {
   firstName: string;
   lastName: string;

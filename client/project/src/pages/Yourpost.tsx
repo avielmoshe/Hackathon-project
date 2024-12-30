@@ -1,8 +1,7 @@
 import Categories from "@/components/Categories";
 import MapAccordion from "@/components/MapAccordion";
-import { Button } from "@/components/ui/button";
 import { createPost } from "@/utils/api.service";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 const locations = [

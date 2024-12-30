@@ -105,7 +105,7 @@ const Login = () => {
             Log in as{" "}
             <span
               className="text-indigo-500 hover:underline cursor-pointer"
-              onClick={() => navigate("/home")}
+              onClick={() => navigate("/")}
             >
               Guest
             </span>
