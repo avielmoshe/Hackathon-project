@@ -237,7 +237,7 @@ export interface Data {
   serviceType: string[];
 }
 
-function Yourpost({ btnText }) {
+function Yourpost({ btnText }: { btnText: string | undefined }) {
   const [isPostExist, setIsPostExist] = useState<boolean>(false);
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const [data, setData] = useState<Data>({
@@ -257,21 +257,22 @@ function Yourpost({ btnText }) {
 
     setData((prev) => {
       // אם prev[arrayName] הוא לא מערך, אתחיל אותו כ[].
-      const currentArray = Array.isArray(prev[arrayName])
-        ? prev[arrayName]
-        : [];
+      if (arrayName) {
+        const currentArray = Array.isArray(prev[arrayName])
+          ? prev[arrayName]
+          : [];
 
-      if (type === "checkbox") {
-        // אם מדובר בצ'קאבוּק, נעדכן את המערך בהתאם אם נבדק או לא
-        const updatedArray = checked
-          ? [...currentArray, name] // אם נבדק, נוסיף
-          : currentArray.filter((item) => item !== name); // אם לא נבדק, נסיר
-        return {
-          ...prev,
-          [arrayName]: updatedArray,
-        };
+        if (type === "checkbox") {
+          // אם מדובר בצ'קאבוּק, נעדכן את המערך בהתאם אם נבדק או לא
+          const updatedArray = checked
+            ? [...currentArray, name] // אם נבדק, נוסיף
+            : currentArray.filter((item) => item !== name); // אם לא נבדק, נסיר
+          return {
+            ...prev,
+            [arrayName]: updatedArray,
+          };
+        }
       }
-
       // אם מדובר בשדה טקסט, נעדכן את הערך של השדה הספציפי
       return {
         ...prev,
@@ -304,7 +305,7 @@ function Yourpost({ btnText }) {
     e.preventDefault();
     if (btnText) {
       const queryString = new URLSearchParams(
-        Object.entries(data).reduce((acc, [key, value]) => {
+        Object.entries(data).reduce((acc: any, [key, value]) => {
           acc[key] = Array.isArray(value) ? value.join(",") : value;
           return acc;
         }, {})

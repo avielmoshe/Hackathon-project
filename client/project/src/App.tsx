@@ -1,7 +1,6 @@
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 
 import Layout from "./pages/Layout.tsx";
-import About from "./pages/About.tsx";
 import Login from "./pages/Login.tsx";
 import SignUp from "./pages/SignUp.tsx";
 import HomePage from "./pages/HomePage.tsx";
@@ -18,6 +17,7 @@ import Nog from "./pages/Chat.tsx";
 import Chat from "./pages/Chat.tsx";
 import DonationPage from "./pages/DonationPage.tsx";
 import VolunteerSection from "./pages/Volunter.tsx";
+import About from "./pages/about.tsx";
 
 function App() {
   const dispatch = useAppDispatch();
@@ -57,7 +57,7 @@ function App() {
         },
         {
           path: "/yourpost",
-          element: <Yourpost />,
+          element: <Yourpost btnText={"baba"} />,
         },
         {
           path: "/FilterPost/",
@@ -65,18 +65,15 @@ function App() {
         },
         {
           path: "/Volunter",
-          element: <VolunteerSection />
-
+          element: <VolunteerSection />,
         },
         {
           path: "/Donantion",
-          element: <DonationPage />
-
+          element: <DonationPage />,
         },
         {
           path: "/Chat",
-          element: <Chat />
-
+          element: <Chat />,
         },
         {
           path: "*",

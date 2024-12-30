@@ -33,15 +33,16 @@ const PostsContainer: React.FC = () => {
 
   return (
     <div className="min-h-screen bg-gray-100 dark:bg-gray-900 p-6">
-      {posts.map((post) => (
-        <Link
-          key={post._id}
-          to={`/Profile/${post.userID._id}`}
-          className="hover:text-primary hover:scale-110 transition-all duration-300"
-        >
-          <Post post={post} />
-        </Link>
-      ))}
+      {posts &&
+        posts.map((post) => (
+          <Link
+            key={post._id}
+            to={`/Profile/${post.userID._id}`}
+            className="hover:text-primary hover:scale-110 transition-all duration-300"
+          >
+            <Post post={post} />
+          </Link>
+        ))}
     </div>
   );
 };

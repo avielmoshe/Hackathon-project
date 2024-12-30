@@ -1,4 +1,4 @@
-import axios from "axios";
+import axios, { AxiosError } from "axios";
 import Cookies from "js-cookie";
 
 const base_url =
@@ -31,9 +31,10 @@ export const signUp = async (user: user) => {
     console.log(response.data);
     return response.data;
   } catch (error) {
+    const axiosError = error as AxiosError;
     return {
       success: false,
-      error: error?.response?.data || error?.message,
+      error: axiosError.response?.data || axiosError.message,
     };
   }
 };
@@ -45,9 +46,12 @@ export const signIn = async (user: userLogin) => {
     });
     return response.data;
   } catch (error) {
+    const axiosError = error as AxiosError;
+
+    // עכשיו נוכל לגשת בצורה בטוחה ל-properties כמו response או message
     return {
       success: false,
-      error: error.response?.data || error.message,
+      error: axiosError.response?.data || axiosError.message,
     };
   }
 };
@@ -63,9 +67,11 @@ export const isUserValid = async () => {
 
     return response.data;
   } catch (error) {
+    const axiosError = error as AxiosError;
+
     return {
       userLogout: true,
-      error: error.response?.data || error.message,
+      error: axiosError.response?.data || axiosError.message,
     };
   }
 };
@@ -85,8 +91,9 @@ export const crateNewProvider = async (providerData: providerData) => {
 
     return response.data;
   } catch (error) {
+    const axiosError = error as AxiosError;
     return {
-      error: error.response?.data || error.message,
+      error: axiosError.response?.data || axiosError.message,
     };
   }
 };
@@ -99,9 +106,10 @@ export const getProviderByUserId = async (userId: string) => {
 
     return response.data;
   } catch (error) {
+    const axiosError = error as AxiosError;
     return {
       dontHaveData: true,
-      error: error.response?.data || error.message,
+      error: axiosError.response?.data || axiosError.message,
     };
   }
 };
@@ -123,14 +131,15 @@ export const updateProviderApi = async (updateProvider: providerData) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    const axiosError = error as AxiosError;
     return {
       success: false,
-      error: error.response?.data || error.message,
+      error: axiosError.response?.data || axiosError.message,
     };
   }
 };
 
-export const createPost = async (newPostData) => {
+export const createPost = async (newPostData: any) => {
   try {
     const jwt = Cookies.get("jwt");
     const response = await axios.post(
@@ -146,14 +155,15 @@ export const createPost = async (newPostData) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    const axiosError = error as AxiosError;
     return {
       success: false,
-      error: error.response?.data || error.message,
+      error: axiosError.response?.data || axiosError.message,
     };
   }
 };
 
-export const getFilteredPosts = async (filters) => {
+export const getFilteredPosts = async (filters: any) => {
   try {
     const jwt = Cookies.get("jwt");
 
@@ -174,9 +184,10 @@ export const getFilteredPosts = async (filters) => {
     return response.data;
   } catch (error) {
     console.log(error);
+    const axiosError = error as AxiosError;
     return {
       success: false,
-      error: error.response?.data || error.message,
+      error: axiosError.response?.data || axiosError.message,
     };
   }
 };
@@ -187,9 +198,10 @@ export const getAllPostsApi = async () => {
     return response.data;
   } catch (error) {
     console.log(error);
+    const axiosError = error as AxiosError;
     return {
       success: false,
-      error: error.response?.data || error.message,
+      error: axiosError.response?.data || axiosError.message,
     };
   }
 };
